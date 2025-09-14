@@ -25,6 +25,14 @@
         <input class="btn btn-primary" type="submit" value="Register">
     </form>
 
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    {% if message %}
+        <div class="alert alert-danger mt-3" role="alert">
+            <i class="bi bi-exclamation-circle-fill"></i> {{ message }}
+        </div>
+    {% endif %}
 
+    <div class="mt-3">
+        Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    </div>
+    
 {% endblock %}
