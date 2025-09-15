@@ -4,6 +4,12 @@
 
     <h2>Create a listing</h2>
 
+    {% for category in cat_list %}
+
+        {{category.id}} : {{category.cat_name}}
+
+    {% endfor %}
+
     {% if user.is_authenticated %}
 
         <form>
@@ -29,17 +35,25 @@
 
             </div>
 
-            <div class="mb-3">
+            {% if cat_list %}
 
-                <label for="listing-cat" class="form-label">Category</label>
+                <div class="mb-3">
 
-                <select id="listing-cat" class="form-select" aria-label="Default select example">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                    <label for="listing-cat" class="form-label">Category</label>
 
-            </div>
+                    <select id="listing-cat" class="form-select" aria-label="Default select example">
+
+                        {% for category in cat_list %}
+
+                            <option value="{{category.id}}">{{category.cat_name}}</option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+            
+            {% endif %}
 
             <div class="mb-3">
 
