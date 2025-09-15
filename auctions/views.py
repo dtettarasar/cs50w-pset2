@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from .models import User
+from .models import Category
 
 
 def index(request):
@@ -63,6 +64,10 @@ def register(request):
         return render(request, "auctions/register.html")
     
 def create_listing(request):
+    
+        cat_list = Category.objects.all()
+        print("cat_list")
+        print(cat_list)
         
         if request.method == "POST":
             
@@ -70,4 +75,6 @@ def create_listing(request):
             
         else:
         
-            return render(request, 'auctions/create_listing.html')
+            return render(request, 'auctions/create_listing.html', {
+                "cat_list" : cat_list
+            })
