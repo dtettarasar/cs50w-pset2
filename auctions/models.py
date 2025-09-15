@@ -4,3 +4,6 @@ from django.db import models
 
 class User(AbstractUser):
     pass
+
+class Category(models.Model):
+    cat_name = models.CharField(max_length=50)
