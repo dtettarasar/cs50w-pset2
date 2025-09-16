@@ -65,16 +65,20 @@ def register(request):
     
 def create_listing(request):
     
-        cat_list = Category.objects.all()
-        print("cat_list")
-        print(cat_list)
+    cat_list = Category.objects.all()
+    print("cat_list")
+    print(cat_list)
         
-        if request.method == "POST":
+    if request.method == "POST":
             
-            print('post request received in create listing route')
+        print('post request received in create listing route')
             
-        else:
+        return render(request, 'auctions/create_listing.html', {
+            "cat_list" : cat_list
+        })
+            
+    else:
         
-            return render(request, 'auctions/create_listing.html', {
-                "cat_list" : cat_list
-            })
+        return render(request, 'auctions/create_listing.html', {
+            "cat_list" : cat_list
+        })

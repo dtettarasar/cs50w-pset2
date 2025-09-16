@@ -6,7 +6,9 @@
 
     {% if user.is_authenticated %}
 
-        <form>
+        <form action="{% url 'create_listing' %}" method="post" >
+
+            {% csrf_token %}
 
             <div class="mb-3">
 
