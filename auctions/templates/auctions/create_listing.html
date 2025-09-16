@@ -13,21 +13,21 @@
             <div class="mb-3">
 
                 <label for="listing-title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="listing-title" placeholder="An Amazing Product!!">
+                <input name="listing-title" type="text" class="form-control" id="listing-title" placeholder="An Amazing Product!!">
 
             </div>
 
             <div class="mb-3">
 
                 <label for="listing-description" class="form-label">Description</label>
-                <textarea class="form-control" id="listing-description" rows="3"></textarea>
+                <textarea class="form-control" name="listing-description" id="listing-description" rows="3"></textarea>
 
             </div>
 
             <div class="mb-3">
 
                 <label for="listing-img" class="form-label">Image</label>
-                <input class="form-control" type="file" id="listing-img">
+                <input class="form-control" type="file" name="listing-img" id="listing-img">
 
             </div>
 
@@ -37,7 +37,7 @@
 
                     <label for="listing-cat" class="form-label">Category</label>
 
-                    <select id="listing-cat" class="form-select" aria-label="Default select example">
+                    <select name="listing-cat" id="listing-cat" class="form-select" aria-label="Default select example">
 
                         {% for category in cat_list %}
 
@@ -54,7 +54,7 @@
             <div class="mb-3">
 
                 <label for="listing-start-bid" class="form-label">Starting Bid</label>
-                <input id="listing-start-bid" type="number" step="0.01" placeholder="0.00" class="form-control"/>
+                <input name="listing-start-bid" id="listing-start-bid" type="number" step="0.01" placeholder="0.00" class="form-control"/>
 
             </div>
 
@@ -79,7 +79,5 @@
         </div>
 
     {% endif %}
-
-    
 
 {% endblock %}
