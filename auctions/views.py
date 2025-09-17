@@ -65,7 +65,24 @@ def register(request):
         return render(request, "auctions/register.html")
     
 def create_listing(request):
+
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+        username = request.user.username
+        email = request.user.email
+
+        print(f"user_id: {user_id}")
+        print(f"username: {username}")
+        print(f"email: {email}")
     
+    else: 
+
+        print("error user not authenticated")
+
+
     cat_list = Category.objects.all()
     # print("cat_list")
     # print(cat_list)
