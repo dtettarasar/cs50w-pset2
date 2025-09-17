@@ -62,9 +62,17 @@
 
         </form>
 
-        {% if message %}
+        {% if errors %}
 
-            {{ message }}
+            {% for error in errors %}
+
+                <div class="alert alert-danger mt-3" role="alert">
+
+                        <i class="bi bi-exclamation-circle-fill"></i> {{error}}
+
+                </div>
+
+            {% endfor %}
 
         {% endif %}
 
