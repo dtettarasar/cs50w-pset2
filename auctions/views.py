@@ -78,9 +78,10 @@ def create_listing(request):
 
         listing_title = request.POST['listing-title']
         description = request.POST['listing-description']
+        starting_bid = request.POST['listing-start-bid']
+        starting_bid_float = None
 
         print(f"listing_title: {listing_title}")
-
 
         # Validation process
         error_msg = []
@@ -88,15 +89,31 @@ def create_listing(request):
         if listing_title == '':
 
             print("error: no title")
-
             error_msg.append("error: no title")
         
         if description == '':
 
             print("error: no description")
-
             error_msg.append("error: no description")
 
+        if starting_bid == '':
+
+            print("error: no starting bid")
+            error_msg.append("error: no starting bid")
+        
+        else:
+
+            try:
+                
+                starting_bid_float = float(starting_bid)
+            
+            except ValueError:
+                
+                print("error: starting bid is not valid")
+                error_msg.append("error: starting bid is not valid")
+
+
+        # display the errors message if the form submission is not valid
         if len(error_msg) != 0:
 
             return render(request, 'auctions/create_listing.html', {
@@ -104,6 +121,15 @@ def create_listing(request):
                 "errors": error_msg
             })
         
+        print("listing_title")
+        print(listing_title)
+        print("---")
+        print("description")
+        print(description)
+        print("---")
+        print("starting_bid_float")
+        print(starting_bid_float)
+        print("---")
 
         # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
         return render(request, 'auctions/create_listing.html', {
