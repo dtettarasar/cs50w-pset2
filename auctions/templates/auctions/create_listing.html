@@ -62,6 +62,12 @@
 
         </form>
 
+        {% if message %}
+
+            {{ message }}
+
+        {% endif %}
+
     {% else %}
 
         <div class="alert alert-info mt-3" role="alert">

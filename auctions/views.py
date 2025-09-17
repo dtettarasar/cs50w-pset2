@@ -76,8 +76,33 @@ def create_listing(request):
         print("data: ")
         print(request.POST)
 
+        listing_title = request.POST['listing-title']
+        description = request.POST['listing-description']
+
+        print(f"listing_title: {listing_title}")
+
+        if listing_title == '':
+
+            print("error: no title")
+
+            return render(request, 'auctions/create_listing.html', {
+                "cat_list" : cat_list,
+                "message": "Error no title"
+            })
+        
+        if description == '':
+
+            print("error: no description")
+
+            return render(request, 'auctions/create_listing.html', {
+                "cat_list" : cat_list,
+                "message": "Error no description"
+            })
+
+
+        # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
         return render(request, 'auctions/create_listing.html', {
-            "cat_list" : cat_list
+            "cat_list" : cat_list,
         })
             
     else:
