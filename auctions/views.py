@@ -7,6 +7,7 @@ from django.urls import reverse
 from .models import User
 from .models import Category
 
+import re
 
 def index(request):
     return render(request, "auctions/index.html")
@@ -80,11 +81,13 @@ def create_listing(request):
         description = request.POST['listing-description']
         starting_bid = request.POST['listing-start-bid']
         starting_bid_float = None
+        img_url = request.POST['listing-img']
 
         print(f"listing_title: {listing_title}")
 
         # Validation process
         error_msg = []
+        url_pattern = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)\.(?:jpg|jpeg|png|gif|bmp|webp|svg)$"
 
         if listing_title == '':
 
@@ -112,6 +115,15 @@ def create_listing(request):
                 print("error: starting bid is not valid")
                 error_msg.append("error: starting bid is not valid")
 
+        # if the user provide an url for the image, make sure the url is valid
+        if img_url != '':
+
+            test_valid_url = re.match(url_pattern, img_url)
+
+            if test_valid_url == None:
+
+                error_msg.append("error: image url is not valid")
+
 
         # display the errors message if the form submission is not valid
         if len(error_msg) != 0:
@@ -129,6 +141,9 @@ def create_listing(request):
         print("---")
         print("starting_bid_float")
         print(starting_bid_float)
+        print("---")
+        print("img_url")
+        print(img_url)
         print("---")
 
         # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
