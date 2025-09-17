@@ -31,3 +31,5 @@ class Listing(models.Model):
     # make sure they have a related name so that 2 listing_sets can be created (as we have here to attributes related to the User model)
     creator = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,blank=True, related_name="created_listings")
     winner = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,blank=True, related_name="won_listings")
+
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
