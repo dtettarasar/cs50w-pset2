@@ -88,11 +88,10 @@ def create_listing(request):
     # print(cat_list)
         
     if request.method == "POST":
+        
+        # TODO : insert all this code in external file
             
         print('post request received in create listing route')
-        
-        print("data: ")
-        print(request.POST)
 
         listing_title = request.POST['listing-title']
         description = request.POST['listing-description']
@@ -101,6 +100,11 @@ def create_listing(request):
         img_url = request.POST['listing-img']
 
         print(f"listing_title: {listing_title}")
+        
+        listing_to_create = {
+            'title': request.POST['listing-title'],
+            'description': request.POST['listing-description']
+        }
 
         # Validation process
         error_msg = []
@@ -149,24 +153,29 @@ def create_listing(request):
                 "cat_list" : cat_list,
                 "errors": error_msg
             })
-        
-        print("listing_title")
-        print(listing_title)
-        print("---")
-        print("description")
-        print(description)
-        print("---")
-        print("starting_bid_float")
-        print(starting_bid_float)
-        print("---")
-        print("img_url")
-        print(img_url)
-        print("---")
+            
+        else: 
+            
+            # if no errors message, then conditions are valid, we can make an insert:
+            
+            print("conditions are valid we can insert listing in database") 
+            print("listing_title")
+            print(listing_title)
+            print("---")
+            print("description")
+            print(description)
+            print("---")
+            print("starting_bid_float")
+            print(starting_bid_float)
+            print("---")
+            print("img_url")
+            print(img_url)
+            print("---")
 
-        # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
-        return render(request, 'auctions/create_listing.html', {
-            "cat_list" : cat_list,
-        })
+            # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
+            return render(request, 'auctions/create_listing.html', {
+                "cat_list" : cat_list,
+            })
             
     else:
         
