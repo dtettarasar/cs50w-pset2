@@ -9,6 +9,8 @@ from .models import Category
 
 import re
 
+from . import util
+
 def index(request):
     return render(request, "auctions/index.html")
 
@@ -92,6 +94,8 @@ def create_listing(request):
         # TODO : insert all this code in external file
             
         print('post request received in create listing route')
+        
+        util.save_listing()
 
         listing_title = request.POST['listing-title']
         description = request.POST['listing-description']
