@@ -1,3 +1,5 @@
+import re
+
 def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category):
     
     print("init save listing function from util.py")
@@ -16,6 +18,9 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         
     }
     
+    url_pattern = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)\.(?:jpg|jpeg|png|gif|bmp|webp|svg)$"
+    
+    # Validation process
     if listing_data["title"] == '':
         
         listing_data['error_msg'].append("error: no title")
@@ -38,6 +43,13 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
             
             listing_data['error_msg'].append("error: starting bid is not valid")
         
+    # if the user provide an url for the image, make sure the url is valid
+    if listing_data['img_url'] != '':
+        
+        test_valid_url = re.match(url_pattern, listing_data['img_url'])
+        
+        if test_valid_url == None:
+            
+            listing_data['error_msg'].append("error: image url is not valid")
     
-     
     return listing_data
