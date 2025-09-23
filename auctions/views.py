@@ -73,12 +73,12 @@ def create_listing(request):
         print("user is authenticated")
 
         user_id = request.user.id
-        username = request.user.username
-        email = request.user.email
+        # username = request.user.username
+        # email = request.user.email
 
         print(f"user_id: {user_id}")
-        print(f"username: {username}")
-        print(f"email: {email}")
+        # print(f"username: {username}")
+        # print(f"email: {email}")
     
     else: 
 
@@ -95,20 +95,25 @@ def create_listing(request):
             
         print('post request received in create listing route')
         
-        util.save_listing()
+        listing_data = util.save_listing(
+            request.user.id,
+            request.POST['listing-title'],
+            request.POST['listing-description'],
+            request.POST['listing-start-bid'],
+            request.POST['listing-img'],
+        )
+        
+        print("listing_data:")
+        print(listing_data)
 
         listing_title = request.POST['listing-title']
         description = request.POST['listing-description']
         starting_bid = request.POST['listing-start-bid']
         starting_bid_float = None
         img_url = request.POST['listing-img']
+        category = request.POST['listing-cat']
 
         print(f"listing_title: {listing_title}")
-        
-        listing_to_create = {
-            'title': request.POST['listing-title'],
-            'description': request.POST['listing-description']
-        }
 
         # Validation process
         error_msg = []
@@ -174,6 +179,9 @@ def create_listing(request):
             print("---")
             print("img_url")
             print(img_url)
+            print("---")
+            print("category")
+            print(category)
             print("---")
 
             # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
