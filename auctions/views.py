@@ -110,10 +110,6 @@ def create_listing(request):
             
         else: 
             
-            # if no errors message, then conditions are valid, we can make an insert:
-            
-            print("conditions are valid we can insert listing in database")
-
             # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
             return render(request, 'auctions/create_listing.html', {
                 "cat_list" : cat_list,

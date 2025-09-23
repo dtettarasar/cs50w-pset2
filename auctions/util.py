@@ -13,7 +13,7 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         'start_bid_float': None,
         'img_url': l_img_url,
         'category': l_category,
-        'creation_status': None,
+        'created': None,
         'error_msg': []
         
     }
@@ -51,5 +51,16 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         if test_valid_url == None:
             
             listing_data['error_msg'].append("error: image url is not valid")
+            
+    if len(listing_data['error_msg']) != 0:
+        
+        print("we cannot insert listing in database")
+        listing_data['created'] = False
+    
+    else:
+        
+        # if no errors message, then conditions are valid, we can make an insert:
+        print("conditions are valid we can insert listing in database")
+
     
     return listing_data
