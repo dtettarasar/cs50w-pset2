@@ -15,4 +15,16 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         
     }
     
+    if listing_data["title"] == '':
+        
+        listing_data['error_msg'].append("error: no title")
+        
+    if listing_data["description"] == '':
+        
+        listing_data['error_msg'].append("error: no description")
+        
+    if listing_data["start_bid"] == '':
+        
+        listing_data['error_msg'].append("error: no starting bid")
+     
     return listing_data
