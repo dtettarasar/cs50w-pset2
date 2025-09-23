@@ -73,12 +73,8 @@ def create_listing(request):
         print("user is authenticated")
 
         user_id = request.user.id
-        # username = request.user.username
-        # email = request.user.email
 
         print(f"user_id: {user_id}")
-        # print(f"username: {username}")
-        # print(f"email: {email}")
     
     else: 
 
@@ -86,12 +82,8 @@ def create_listing(request):
 
 
     cat_list = Category.objects.all()
-    # print("cat_list")
-    # print(cat_list)
         
     if request.method == "POST":
-        
-        # TODO : insert all this code in external file
             
         print('post request received in create listing route')
         
@@ -106,49 +98,6 @@ def create_listing(request):
         
         print("listing_data:")
         print(listing_data)
-
-        listing_title = request.POST['listing-title']
-        description = request.POST['listing-description']
-        starting_bid = request.POST['listing-start-bid']
-        starting_bid_float = None
-        img_url = request.POST['listing-img']
-        category = request.POST['listing-cat']
-
-        print(f"listing_title: {listing_title}")
-
-        # Validation process
-        error_msg = []
-        url_pattern = r"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)\.(?:jpg|jpeg|png|gif|bmp|webp|svg)$"
-        
-        if description == '':
-
-            print("error: no description")
-            error_msg.append("error: no description")
-
-        if starting_bid == '':
-
-            print("error: no starting bid")
-            error_msg.append("error: no starting bid")
-        
-        else:
-
-            try:
-                
-                starting_bid_float = float(starting_bid)
-            
-            except ValueError:
-                
-                print("error: starting bid is not valid")
-                error_msg.append("error: starting bid is not valid")
-
-        # if the user provide an url for the image, make sure the url is valid
-        if img_url != '':
-
-            test_valid_url = re.match(url_pattern, img_url)
-
-            if test_valid_url == None:
-
-                error_msg.append("error: image url is not valid")
 
 
         # display the errors message if the form submission is not valid
