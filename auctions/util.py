@@ -1,4 +1,4 @@
-def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url):
+def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category):
     
     print("init save listing function from util.py")
     
@@ -9,6 +9,7 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         'description': l_description,
         'start_bid': l_start_bid,
         'img_url': l_img_url,
+        'category': l_category,
         'creation_status': None,
         'error_msg': []
         

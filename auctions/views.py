@@ -101,6 +101,7 @@ def create_listing(request):
             request.POST['listing-description'],
             request.POST['listing-start-bid'],
             request.POST['listing-img'],
+            request.POST['listing-cat'],
         )
         
         print("listing_data:")
