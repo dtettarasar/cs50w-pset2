@@ -157,11 +157,11 @@ def create_listing(request):
 
 
         # display the errors message if the form submission is not valid
-        if len(error_msg) != 0:
+        if len(listing_data['error_msg']) != 0:
 
             return render(request, 'auctions/create_listing.html', {
                 "cat_list" : cat_list,
-                "errors": error_msg
+                "errors": listing_data['error_msg']
             })
             
         else: 
