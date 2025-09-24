@@ -118,6 +118,6 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
 
 def get_active_listings():
     
-    listings = Listing.objects.all()
+    listings = Listing.objects.filter(status='open').values
     
     return listings
