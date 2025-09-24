@@ -7,8 +7,6 @@ from django.urls import reverse
 from .models import User
 from .models import Category
 
-import re
-
 from . import util
 
 def index(request):
@@ -88,7 +86,7 @@ def create_listing(request):
         print('post request received in create listing route')
         
         listing_data = util.save_listing(
-            request.user.id,
+            request.user,
             request.POST['listing-title'],
             request.POST['listing-description'],
             request.POST['listing-start-bid'],

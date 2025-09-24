@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -33,3 +34,7 @@ class Listing(models.Model):
     winner = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,blank=True, related_name="won_listings")
 
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    # timestamps
+    created_at = models.DateTimeField(auto_now_add=True) # set once at creation
+    updated_at = models.DateTimeField(auto_now=True)      # updates every save()
