@@ -10,6 +10,13 @@ from .models import Category
 from . import util
 
 def index(request):
+    
+    print("get access to index page")
+    
+    active_listings = util.get_active_listings()
+    print("active_listing:")
+    print(active_listings)
+    
     return render(request, "auctions/index.html")
 
 

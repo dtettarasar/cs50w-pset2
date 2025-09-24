@@ -115,3 +115,9 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
 
     
     return listing_data
+
+def get_active_listings():
+    
+    listings = Listing.objects.all()
+    
+    return listings
