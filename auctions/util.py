@@ -20,6 +20,7 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         'category_id': l_category_id,
         'category_obj': None,
         'created': None,
+        'listing_obj': None,
         'error_msg': []
         
     }
@@ -58,6 +59,7 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
         except Category.DoesNotExist:
             
             # this is redondant as default value is already None, but we can improve that part later
+            listing_data['error_msg'].append("Selected category does not exist.")
             listing_data['category_obj'] = None
         
     # if the user provide an url for the image, make sure the url is valid
@@ -95,8 +97,11 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
             
             listing.save()
             
-            print("listing: ")
-            print(listing)
+            listing_data['listing_obj'] = listing
+            listing_data['created'] = True
+            
+            # print("listing: ")
+            # print(listing)
             
         except IntegrityError as e:
             
