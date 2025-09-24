@@ -21,6 +21,10 @@ def index(request):
         "active_listings": active_listings
     })
 
+def view_listing(request):
+    
+    return render(request, "auctions/view_listing.html")
+
 
 def login_view(request):
     if request.method == "POST":
