@@ -17,7 +17,9 @@ def index(request):
     print("active_listing:")
     print(active_listings)
     
-    return render(request, "auctions/index.html")
+    return render(request, "auctions/index.html", {
+        "active_listings": active_listings
+    })
 
 
 def login_view(request):
