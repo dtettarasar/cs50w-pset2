@@ -21,9 +21,14 @@ def index(request):
         "active_listings": active_listings
     })
 
-def view_listing(request):
+def view_listing(request, listing_id):
     
-    return render(request, "auctions/view_listing.html")
+    print("accessing view listing page")
+    print(f"listing_id: {listing_id}")
+    
+    return render(request, "auctions/view_listing.html", {
+        'listing_id': listing_id,
+    })
 
 
 def login_view(request):
