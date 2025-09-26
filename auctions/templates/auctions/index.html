@@ -22,7 +22,7 @@
                 <ul class="list-group list-group-flush h5">
                     <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
                     <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
-                    <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: </li>
+                    <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
                 </ul>
 
             </div>
