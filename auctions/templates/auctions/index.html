@@ -3,12 +3,29 @@
 {% block body %}
     <h2>Active Listings</h2>
 
+    <div class="row">
     {% for listing in active_listings %}
-        <h2>{{ listing.title }}</h2>
-        <p>Created by: {{ listing.creator.username }}</p>
-        <p>Category: {{ listing.category.cat_name }}</p>
-        <p>{{ listing.description }}</p>
+
+        <div class="col-sm-6 mt-3">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <p class="card-text">Created by: {{ listing.creator.username }}</p>
+                    <p class="card-text">Category: {{ listing.category.cat_name }}</p>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
     {% endfor %}
+    </div>
 
 
 {% endblock %}
