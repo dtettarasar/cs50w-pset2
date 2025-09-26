@@ -1,46 +1,63 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
 
-    <div class="row" data-masonry='{"percentPosition": true }'>
-        {% for listing in active_listings %}
+    <div class="container-fluid my-5">
 
-            <div class="col-sm-4 mt-3">
+        <div id="hero" class="p-5 text-center rounded-3">
 
-                <div class="card">
+            <i class="bi bi-info-circle-fill"></i>
 
-                    {% if listing.img_url %}
+            <div class="separator mt-3 mb-3 rounded-3"></div>
 
-                        <img class="card-img-top" src="{{ listing.img_url }}">
+            <h2 class="text-white">Active Listings</h2>
 
-                    {% endif %}
+        </div>
 
-                    <div class="card-body">
+    </div>
 
-                        <h3 class="card-title">{{ listing.title }}</h3>
-                        <p class="card-text">{{ listing.description }}</p>
-                        <a href="#" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
-                        <a href="#" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</a>
+    <div class="container mt-4">
+
+        <div class="row" data-masonry='{"percentPosition": true }'>
+            {% for listing in active_listings %}
+
+                <div class="col-sm-4 mt-3">
+
+                    <div class="card">
+
+                        {% if listing.img_url %}
+
+                            <img class="card-img-top" src="{{ listing.img_url }}">
+
+                        {% endif %}
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">{{ listing.title }}</h3>
+                            <p class="card-text">{{ listing.description }}</p>
+                            <a href="#" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
+                            <a href="#" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</a>
+
+                        </div>
+
+                        <ul class="list-group list-group-flush h5">
+                            <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
+
+                            {% if listing.category.cat_name %}
+                                <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
+                            {% endif %}
+
+
+                            <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
+                        </ul>
 
                     </div>
 
-                    <ul class="list-group list-group-flush h5">
-                        <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
-
-                        {% if listing.category.cat_name %}
-                            <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
-                        {% endif %}
-
-
-                        <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
-                    </ul>
-
                 </div>
 
-            </div>
+            {% endfor %}
+        </div>
 
-        {% endfor %}
     </div>
 
 
