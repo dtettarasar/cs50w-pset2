@@ -4,32 +4,37 @@
     <h2>Active Listings</h2>
 
     <div class="row">
-    {% for listing in active_listings %}
+        {% for listing in active_listings %}
 
-        <div class="col-sm-6 mt-3">
+            <div class="col-sm-6 mt-3">
 
-            <div class="card">
+                <div class="card">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h3 class="card-title">{{ listing.title }}</h3>
-                    <p class="card-text">{{ listing.description }}</p>
-                    <a href="#" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
-                    <a href="#" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</a>
+                        <h3 class="card-title">{{ listing.title }}</h3>
+                        <p class="card-text">{{ listing.description }}</p>
+                        <a href="#" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
+                        <a href="#" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</a>
+
+                    </div>
+
+                    <ul class="list-group list-group-flush h5">
+                        <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
+
+                        {% if listing.category.cat_name %}
+                            <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
+                        {% endif %}
+
+
+                        <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
+                    </ul>
 
                 </div>
 
-                <ul class="list-group list-group-flush h5">
-                    <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
-                    <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
-                    <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
-                </ul>
-
             </div>
 
-        </div>
-
-    {% endfor %}
+        {% endfor %}
     </div>
 
 
