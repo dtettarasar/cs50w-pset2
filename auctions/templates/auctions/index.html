@@ -10,6 +10,12 @@
 
                 <div class="card">
 
+                    {% if listing.img_url %}
+
+                        <img class="card-img-top" src="{{ listing.img_url }}">
+
+                    {% endif %}
+
                     <div class="card-body">
 
                         <h3 class="card-title">{{ listing.title }}</h3>
