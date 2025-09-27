@@ -33,31 +33,31 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{% url 'auctions:index' %}">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                            <a class="nav-link" href="{% url 'auctions:index' %}">Active Listings</a>
                         </li>
 
                         {% if user.is_authenticated %}
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'create_listing' %}">Create a listing</a>
+                                <a class="nav-link" href="{% url 'auctions:create_listing' %}">Create a listing</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                                <a class="nav-link" href="{% url 'auctions:logout' %}">Log Out</a>
                             </li>
 
                         {% else %}
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                                <a class="nav-link" href="{% url 'auctions:login' %}">Log In</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                <a class="nav-link" href="{% url 'auctions:register' %}">Register</a>
                             </li>
                             
                         {% endif %}
