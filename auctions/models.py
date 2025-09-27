@@ -53,3 +53,6 @@ class Listing(models.Model):
             return self.created_at.strftime("%m/%d/%Y %I:%M %p")  # ex: 09/17/2025 05:30 PM
         else:
             return ""
+        
+    def __str__(self):
+        return f"Listing {self.pk}: {self.title} (${self.current_bid:.2f})"

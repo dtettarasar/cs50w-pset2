@@ -126,3 +126,8 @@ def get_listing_by_id(listing_id):
     
     print("init get_listing_by_id")
     print(f"request data for listing: {listing_id}")
+    
+    listing = Listing.objects.get(pk=listing_id)
+    
+    print("listing data: ")
+    print(listing)
