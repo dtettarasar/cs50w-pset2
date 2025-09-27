@@ -129,5 +129,7 @@ def get_listing_by_id(listing_id):
     
     listing = Listing.objects.get(pk=listing_id)
     
-    print("listing data: ")
-    print(listing)
+    # print("listing data: ")
+    # print(listing)
+    
+    return listing
