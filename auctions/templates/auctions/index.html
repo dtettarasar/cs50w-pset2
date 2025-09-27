@@ -35,7 +35,7 @@
 
                             <h3 class="card-title">{{ listing.title }}</h3>
                             <p class="card-text">{{ listing.description }}</p>
-                            <a href="#" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
+                            <a href="{% url 'view_listing' listing.id %}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
                             <a href="#" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</a>
 
                         </div>
