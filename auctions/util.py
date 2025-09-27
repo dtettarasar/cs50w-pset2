@@ -121,3 +121,8 @@ def get_active_listings():
     listings = Listing.objects.filter(status='open').select_related("creator", "category")
     
     return listings
+
+def get_listing_by_id(listing_id):
+    
+    print("init get_listing_by_id")
+    print(f"request data for listing: {listing_id}")

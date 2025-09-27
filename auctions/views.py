@@ -24,7 +24,7 @@ def index(request):
 def view_listing(request, listing_id):
     
     print("accessing view listing page")
-    print(f"listing_id: {listing_id}")
+    util.get_listing_by_id(listing_id)
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
