@@ -2,14 +2,18 @@
 
 {% block body %}
 
-    <div class="container-fluid my-5">
+    {% if listing %}
 
-        <div id="hero" class="p-5 text-left rounded-3">
+        <div class="container-fluid my-5">
 
-            <h2 class="text-white">Listing title</h2>
+            <div id="hero" class="p-5 text-left rounded-3">
+
+                <h2 class="text-white">{{listing.title}}</h2>
+
+            </div>
 
         </div>
 
-    </div>
+    {% endif %}
 
 {% endblock %}

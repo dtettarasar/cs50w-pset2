@@ -127,9 +127,14 @@ def get_listing_by_id(listing_id):
     print("init get_listing_by_id")
     print(f"request data for listing: {listing_id}")
     
-    listing = Listing.objects.get(pk=listing_id)
+    try:
+        listing = Listing.objects.get(pk=listing_id)
+        return listing
     
-    # print("listing data: ")
-    # print(listing)
+    except Listing.DoesNotExist:
+        print(f"⚠️ No listing found with id {listing_id}")
+        return None
     
-    return listing
+    except Listing.MultipleObjectsReturned:
+        print(f"⚠️ Multiple listings found with id {listing_id} (shouldn’t happen!)")
+        return None

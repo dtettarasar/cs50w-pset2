@@ -30,6 +30,7 @@ def view_listing(request, listing_id):
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
+        'listing': listing
     })
 
 
