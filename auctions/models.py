@@ -45,3 +45,11 @@ class Listing(models.Model):
         if self.current_bid is not None:
             return "${:,.2f}".format(self.current_bid)
         return "No bid yet"
+
+    # format date US style
+    def formatted_date(self):
+        """Retourne la date de création au format US"""
+        if self.created_at:
+            return self.created_at.strftime("%m/%d/%Y %I:%M %p")  # ex: 09/17/2025 05:30 PM
+        else:
+            return ""
