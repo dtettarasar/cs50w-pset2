@@ -39,6 +39,7 @@ class Listing(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # set once at creation
     updated_at = models.DateTimeField(auto_now=True)      # updates every save()
     
+    @property
     def formatted_bid(self):
         """Retourne le current_bid formaté en dollars"""
         if self.current_bid is not None:
