@@ -25,7 +25,11 @@ def view_listing(request, listing_id):
     
     print("accessing view listing page")
     
-    listing = util.get_listing_by_id(listing_id)
+    listing = None
+    
+    if listing_id.isdigit():
+        listing = util.get_listing_by_id(listing_id)
+    
     print(listing)
     
     return render(request, "auctions/view_listing.html", {
