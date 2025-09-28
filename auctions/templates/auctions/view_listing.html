@@ -10,7 +10,7 @@
 
             <div id="hero" class="p-5 text-left rounded-3">
 
-                <h2 class="text-white">{{listing.title}}</h2>
+                <h2 class="text-white fs-1">{{listing.title}}</h2>
 
             </div>
 
@@ -23,16 +23,42 @@
 
                     {% if listing.img_url %}
 
-                        <img src="{{ listing.img_url }}" class="img-fluid" alt="...">
+                        <img src="{{ listing.img_url }}" class="img-fluid rounded" alt="...">
 
                     {% else %}
 
-                        <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="img-fluid" alt="Placeholder image">
+                        <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="img-fluid rounded" alt="Placeholder image">
 
                     {% endif %}
 
                 </div>
-                <div class="col-6">.col-6<br>Subsequent columns continue along the new line.</div>
+
+                <div class="col-6">
+
+                    <p class="fs-4">{{ listing.description }}</p>
+
+                    <ul class="list-group fs-5">
+
+                        <li class="list-group-item">
+                            <strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="bi bi-calendar"></i> Created at:</strong> {{ listing.formatted_date }}
+                        </li>
+
+                        {% if listing.category.cat_name %}
+                            <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
+                        {% endif %}
+
+                        <li class="list-group-item">
+                            <i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}
+                        </li>
+
+                    </ul>
+
+                </div>
+
             </div>
 
         </div>
