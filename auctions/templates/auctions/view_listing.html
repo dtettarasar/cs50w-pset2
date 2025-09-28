@@ -2,6 +2,8 @@
 
 {% block body %}
 
+{% load static %}
+
     {% if listing %}
 
         <div class="container-fluid my-5">
@@ -10,6 +12,27 @@
 
                 <h2 class="text-white">{{listing.title}}</h2>
 
+            </div>
+
+        </div>
+
+        <div class="container mt-4">
+
+            <div class="row">
+                <div class="col-4">
+
+                    {% if listing.img_url %}
+
+                        <img src="{{ listing.img_url }}" class="img-fluid" alt="...">
+
+                    {% else %}
+
+                        <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="img-fluid" alt="Placeholder image">
+
+                    {% endif %}
+
+                </div>
+                <div class="col-6">.col-6<br>Subsequent columns continue along the new line.</div>
             </div>
 
         </div>
