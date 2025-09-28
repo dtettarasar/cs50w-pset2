@@ -2,6 +2,8 @@
 
 {% block body %}
 
+{% load static %}
+
     <div class="container-fluid my-5">
 
         <div id="hero" class="p-5 text-center rounded-3">
@@ -28,6 +30,10 @@
                         {% if listing.img_url %}
 
                             <img class="card-img-top" src="{{ listing.img_url }}">
+
+                        {% else %}
+
+                            <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="card-img-top" alt="Placeholder image">
 
                         {% endif %}
 
