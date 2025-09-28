@@ -20,7 +20,7 @@
 
         {% if user.is_authenticated %}
 
-            <form action="{% url 'create_listing' %}" method="post" >
+            <form action="{% url 'auctions:create_listing' %}" method="post" >
 
                 {% csrf_token %}
 
