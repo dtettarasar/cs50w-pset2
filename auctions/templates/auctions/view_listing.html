@@ -66,6 +66,16 @@
 
                             - add comments for user (both creator and not creator)
 
+                            {% if user_is_listing_creator %}
+
+                                the user is the listing creator
+
+                            {% else %}
+
+                                the user is not the listing creator
+
+                            {% endif %}
+
                     {% else %}
 
                             Not signed in. we can add a message to invite user to register or login, to access features
