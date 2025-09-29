@@ -57,6 +57,21 @@
 
                     </ul>
 
+                    {% if user.is_authenticated %}
+                            
+                            if user is authenticated: add function to: 
+
+                            - close auction if the user is the listing creator 
+                            - add to watchlist, place a bid if user is not the listing creator
+
+                            - add comments for user (both creator and not creator)
+
+                    {% else %}
+
+                            Not signed in. we can add a message to invite user to register or login, to access features
+
+                    {% endif %}
+
                 </div>
 
             </div>
