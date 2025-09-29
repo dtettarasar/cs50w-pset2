@@ -25,7 +25,20 @@ def view_listing(request, listing_id):
     
     print("accessing view listing page")
     
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+
+        print(f"user_id: {user_id}")
+    
+    else: 
+
+        print("user not authenticated")
+    
     listing = None
+    
     
     if listing_id.isdigit():
         listing = util.get_listing_by_id(listing_id)
