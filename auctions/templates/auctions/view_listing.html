@@ -63,11 +63,11 @@
 
                                 {% if user_is_listing_creator %}
 
-                                    <button type="button" class="btn btn-success"><i class="bi bi-bookmark-check-fill"></i> Close the auction</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#confirmAuctionClose" class="btn btn-success"><i class="bi bi-bookmark-check-fill"></i> Close the auction</button>
 
                                 {% else %}
 
-                                    <button type="button" class="btn btn-success"><i class="bi bi-cash-stack"></i> Place a bid</button>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#placeBidModal" class="btn btn-success"><i class="bi bi-cash-stack"></i> Place a bid</button>
                                     <button type="button" class="btn btn-primary"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
 
                                 {% endif %}
@@ -97,5 +97,43 @@
         </div>
 
     {% endif %}
+
+    <!-- Modal to place a bid -->
+    <div class="modal fade" id="placeBidModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Place your bid</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal to close the auction -->
+    <div class="modal fade" id="confirmAuctionClose" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Close the auction</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
