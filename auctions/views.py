@@ -25,6 +25,8 @@ def view_listing(request, listing_id):
     
     print("accessing view listing page")
     
+    user_is_listing_creator = None
+    
     if request.user.is_authenticated:
 
         print("user is authenticated")
@@ -45,9 +47,25 @@ def view_listing(request, listing_id):
     
     print(listing)
     
+    if listing != None:
+        
+        print("verify if user is creator")
+        print(listing.creator.id)
+        
+        if listing.creator.id == request.user.id:
+            
+            print("the user is the listing creator")
+            user_is_listing_creator = True
+            
+        else:
+            
+            print("the user is not the listing creator")
+            user_is_listing_creator = False
+    
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
-        'listing': listing
+        'listing': listing,
+        'user_is_listing_creator': user_is_listing_creator
     })
 
 
