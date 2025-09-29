@@ -58,23 +58,21 @@
                     </ul>
 
                     {% if user.is_authenticated %}
-                            
-                            if user is authenticated: add function to: 
 
-                            - close auction if the user is the listing creator 
-                            - add to watchlist, place a bid if user is not the listing creator
+                            <div class="btn-group mt-3 btn-group-lg" role="group" aria-label="Basic example">
 
-                            - add comments for user (both creator and not creator)
+                                {% if user_is_listing_creator %}
 
-                            {% if user_is_listing_creator %}
+                                    <button type="button" class="btn btn-success"><i class="bi bi-bookmark-check-fill"></i> Close the auction</button>
 
-                                the user is the listing creator
+                                {% else %}
 
-                            {% else %}
+                                    <button type="button" class="btn btn-success"><i class="bi bi-cash-stack"></i> Place a bid</button>
+                                    <button type="button" class="btn btn-primary"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
 
-                                the user is not the listing creator
-
-                            {% endif %}
+                                {% endif %}
+                                
+                            </div>
 
                     {% else %}
 
