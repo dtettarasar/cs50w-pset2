@@ -18,7 +18,7 @@
 
     <div class="container mt-4">
 
-        <form action="{% url 'register' %}" method="post">
+        <form action="{% url 'auctions:register' %}" method="post">
 
             {% csrf_token %}
 
@@ -57,7 +57,7 @@
         {% endif %}
 
         <div class="mt-3">
-            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+            Already have an account? <a href="{% url 'auctions:login' %}">Log In here.</a>
         </div>
 
     </div>
