@@ -142,6 +142,10 @@ def get_listing_by_id(listing_id):
 def create_bid(user_id, listing_id, new_price):
     
     print("init create_bid function")
+    print("data: ")
+    print(f"user_id: {user_id}")
+    print(f"listing_id: {listing_id}")
+    print(f"new_price: {new_price}")
     
 def get_latest_bid(listing_id):
     
