@@ -141,11 +141,34 @@ def get_listing_by_id(listing_id):
     
 def create_bid(user_id, listing_id, new_price):
     
+    bid_data = {
+        
+        'creator': user_id,
+        'listing': listing_id,
+        'new_price': new_price,
+        'created': None,
+        'error_msg': []
+        
+    }
+    
     print("init create_bid function")
     print("data: ")
-    print(f"user_id: {user_id}")
-    print(f"listing_id: {listing_id}")
-    print(f"new_price: {new_price}")
+    print(f"user_id: {bid_data['creator']}")
+    print(f"listing_id: {bid_data['listing']}")
+    print(f"new_price: {bid_data['new_price']}")
+    
+    listing = get_listing_by_id(listing_id)
+    
+    if listing != None:
+        
+        print("listing found")
+        print(listing)
+    
+    else:
+        
+        bid_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+    
+    
     
 def get_latest_bid(listing_id):
     
