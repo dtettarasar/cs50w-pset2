@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import User
@@ -23,21 +23,21 @@ def index(request):
 
 def view_listing(request, listing_id):
     
-    print("accessing view listing page")
+    # print("accessing view listing page")
     
     user_is_listing_creator = None
     
     if request.user.is_authenticated:
 
-        print("user is authenticated")
+        # print("user is authenticated")
 
         user_id = request.user.id
 
-        print(f"user_id: {user_id}")
+        # print(f"user_id: {user_id}")
     
-    else: 
+    # else: 
 
-        print("user not authenticated")
+        # print("user not authenticated")
     
     listing = None
     
@@ -45,7 +45,7 @@ def view_listing(request, listing_id):
     if listing_id.isdigit():
         listing = util.get_listing_by_id(listing_id)
     
-    print(listing)
+    # print(listing)
     
     if listing != None:
         
@@ -175,6 +175,26 @@ def create_listing(request):
             "cat_list" : cat_list
         })
 
-def create_bid(request):
+def create_bid(request, listing_id):
     
     print("get access to create bid view")
+    
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+
+        print(f"user_id: {user_id}")
+    
+    else: 
+
+        print("error user not authenticated")
+
+        
+    if request.method == "POST":
+        
+        print('post request received in create bid route')
+        print(f"listing_id: {listing_id}")
+        
+    return redirect("auctions:view_listing", listing_id=listing_id)

@@ -79,7 +79,9 @@
                                     
                                     Interested in this listing? Place your bid :) !
 
-                                    <form>
+                                    <form action="{% url 'auctions:create_bid' listing.id %}" method="post">
+
+                                        {% csrf_token %}
 
                                         <div class="mb-3">
 
