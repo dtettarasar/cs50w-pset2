@@ -164,19 +164,32 @@ def create_bid(user_id, listing_id, new_price):
         
         print("listing found")
         print(listing)
-    
+        
+        # check that the new price is received in a valid format
+        try:
+        
+            bid_data['new_price_float'] = float(bid_data["new_price_str"])
+        
+        except:
+        
+            print("error: price value is not valid")
+            bid_data['error_msg'].append("Error: the price is not valid")
+            
+        # make sure the new price is higher than the listing current bid
+        
+        if bid_data['new_price_float'] is not None:
+            
+            if bid_data['new_price_float'] <= 0:
+                
+                bid_data['error_msg'].append("Invalid bid: must be positive")
+                
+            elif bid_data['new_price_float'] <= listing.current_bid:
+                
+                bid_data['error_msg'].append("New bid must be higher than current bid")
+            
     else:
         
         bid_data['error_msg'].append("A technical problem has occurred. Please try again later.")
-        
-    try:
-        
-        bid_data['new_price_float'] = float(bid_data["new_price_str"])
-        
-    except:
-        
-        print("error: price value is not valid")
-        bid_data['error_msg'].append("Error: the price is not valid")
     
     return bid_data
     
