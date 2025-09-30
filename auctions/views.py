@@ -184,17 +184,16 @@ def create_bid(request, listing_id):
         print("user is authenticated")
 
         user_id = request.user.id
-
-        print(f"user_id: {user_id}")
+        
+        if request.method == "POST":
+        
+            print('post request received in create bid route')
+            print(f"listing_id: {listing_id}")
+            print(f'new bid: {request.POST['listing-new-bid']}')
+            print(f"user_id: {user_id}")
     
     else: 
 
         print("error user not authenticated")
-
-        
-    if request.method == "POST":
-        
-        print('post request received in create bid route')
-        print(f"listing_id: {listing_id}")
         
     return redirect("auctions:view_listing", listing_id=listing_id)
