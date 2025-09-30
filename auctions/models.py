@@ -56,3 +56,28 @@ class Listing(models.Model):
         
     def __str__(self):
         return f"Listing {self.pk}: {self.title} (${self.current_bid:.2f})"
+    
+class Bid(models.Model):
+    
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,blank=True, related_name="created_bids")
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, null=True, related_name="related_bids")
+    value = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    @property
+    def formatted_bid(self):
+        """Retourne le current_bid formaté en dollars"""
+        if self.value is not None:
+            return "${:,.2f}".format(self.value)
+        return "No bid yet"
+    
+    # format date US style
+    def formatted_date(self):
+        """Retourne la date de création au format US"""
+        if self.created_at:
+            return self.created_at.strftime("%m/%d/%Y %I:%M %p")  # ex: 09/17/2025 05:30 PM
+        else:
+            return ""
+    
+    def __str__(self):
+        return f"Bid {self.value:.2f} by {self.creator} on {self.listing}"
