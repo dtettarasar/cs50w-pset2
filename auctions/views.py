@@ -174,3 +174,7 @@ def create_listing(request):
         return render(request, 'auctions/create_listing.html', {
             "cat_list" : cat_list
         })
+
+def create_bid(request):
+    
+    print("get access to create bid view")

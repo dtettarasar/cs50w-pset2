@@ -138,3 +138,11 @@ def get_listing_by_id(listing_id):
     except Listing.MultipleObjectsReturned:
         print(f"⚠️ Multiple listings found with id {listing_id} (shouldn’t happen!)")
         return None
+    
+def create_bid(user_id, listing_id, new_price):
+    
+    print("init create_bid function")
+    
+def get_latest_bid(listing_id):
+    
+    print("init get_latest_bid function")
