@@ -145,17 +145,18 @@ def create_bid(user_id, listing_id, new_price):
         
         'creator': user_id,
         'listing': listing_id,
-        'new_price': new_price,
+        'new_price_str': new_price,
+        'new_price_float': None,
         'created': None,
         'error_msg': []
         
     }
     
     print("init create_bid function")
-    print("data: ")
-    print(f"user_id: {bid_data['creator']}")
-    print(f"listing_id: {bid_data['listing']}")
-    print(f"new_price: {bid_data['new_price']}")
+    # print("data: ")
+    # print(f"user_id: {bid_data['creator']}")
+    # print(f"listing_id: {bid_data['listing']}")
+    # print(f"new_price_str: {bid_data['new_price_str']}")
     
     listing = get_listing_by_id(listing_id)
     
@@ -167,7 +168,17 @@ def create_bid(user_id, listing_id, new_price):
     else:
         
         bid_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+        
+    try:
+        
+        bid_data['new_price_float'] = float(bid_data["new_price_str"])
+        
+    except:
+        
+        print("error: price value is not valid")
+        bid_data['error_msg'].append("Error: the price is not valid")
     
+    return bid_data
     
     
 def get_latest_bid(listing_id):
