@@ -170,7 +170,7 @@ def create_bid(user_id, listing_id, new_price):
         
             bid_data['new_price_float'] = float(bid_data["new_price_str"])
         
-        except:
+        except ValueError:
         
             print("error: price value is not valid")
             bid_data['error_msg'].append("Error: the price is not valid")
