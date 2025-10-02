@@ -191,6 +191,11 @@ def create_bid(user_id, listing_id, new_price):
         
         bid_data['error_msg'].append("A technical problem has occurred. Please try again later.")
     
+    if len(bid_data['error_msg']) != 0:
+        
+        print("we cannot insert bid in database")
+        bid_data['created'] = False
+    
     return bid_data
     
     
