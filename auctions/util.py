@@ -195,6 +195,11 @@ def create_bid(user_id, listing_id, new_price):
         
         print("we cannot insert bid in database")
         bid_data['created'] = False
+        
+    else:
+        
+        # if no errors message, then conditions are valid, we can make an insert:
+        print("conditions are valid we can insert bid in database")
     
     return bid_data
     
