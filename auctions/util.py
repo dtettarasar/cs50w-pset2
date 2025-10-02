@@ -4,6 +4,7 @@ from django.db import DatabaseError, IntegrityError
 
 from .models import Listing
 from .models import Category
+from .models import Bid
 
 def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category_id):
     
@@ -141,14 +142,15 @@ def get_listing_by_id(listing_id):
         print(f"⚠️ Multiple listings found with id {listing_id} (shouldn’t happen!)")
         return None
     
-def create_bid(user_id, listing_id, new_price):
+def create_bid(user_obj, listing_id, new_price):
     
     bid_data = {
         
-        'creator': user_id,
-        'listing': listing_id,
+        'creator': user_obj,
+        'listing_id': listing_id,
         'new_price_str': new_price,
         'new_price_float': None,
+        'listing_obj': None,
         'created': None,
         'error_msg': []
         
@@ -160,12 +162,14 @@ def create_bid(user_id, listing_id, new_price):
     # print(f"listing_id: {bid_data['listing']}")
     # print(f"new_price_str: {bid_data['new_price_str']}")
     
-    listing = get_listing_by_id(listing_id)
+    bid_data['listing_obj'] = get_listing_by_id(bid_data['listing_id'])
     
-    if listing != None:
+    if bid_data['listing_obj'] != None:
         
         print("listing found")
-        print(listing)
+        print(bid_data['listing_obj'])
+        
+        # bid_data['listing_obj'] = listing
         
         # check that the new price is received in a valid format
         try:
@@ -185,7 +189,7 @@ def create_bid(user_id, listing_id, new_price):
                 
                 bid_data['error_msg'].append("Invalid bid: must be positive")
                 
-            elif bid_data['new_price_float'] <= listing.current_bid:
+            elif bid_data['new_price_float'] <= bid_data['listing_obj'].current_bid:
                 
                 bid_data['error_msg'].append("New bid must be higher than current bid")
             
@@ -206,6 +210,21 @@ def create_bid(user_id, listing_id, new_price):
         try:
             
             print("init insertion")
+            
+            bid_to_insert = Bid (
+                
+                creator = bid_data['creator'],
+                listing = bid_data['listing_obj'],
+                value = bid_data['new_price_float'],
+                
+            )
+            
+            bid_to_insert.save()
+            
+            print("inserted bid:")
+            print(bid_to_insert)
+            
+            bid_data['created'] = True
             
         except IntegrityError as e:
             

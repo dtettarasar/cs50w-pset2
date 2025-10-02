@@ -188,7 +188,7 @@ def create_bid(request, listing_id):
         if request.method == "POST":
         
             print('post request received in create bid route')
-            bid = util.create_bid(user_id, listing_id, request.POST['listing-new-bid'])
+            bid = util.create_bid(request.user, listing_id, request.POST['listing-new-bid'])
             print(bid)
     
     else: 
