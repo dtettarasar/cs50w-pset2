@@ -107,11 +107,13 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
             
             print(f"Integrity error: {e}")  # log technique
             listing_data['error_msg'].append("An error occurred while saving the data. Please try again later")
+            listing_data['created'] = False
             
         except DatabaseError as e:
             
             print(f"Database error: {e}")  # log technique
             listing_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+            listing_data['created'] = False
 
     
     return listing_data
@@ -200,6 +202,22 @@ def create_bid(user_id, listing_id, new_price):
         
         # if no errors message, then conditions are valid, we can make an insert:
         print("conditions are valid we can insert bid in database")
+        
+        try:
+            
+            print("init insertion")
+            
+        except IntegrityError as e:
+            
+            print(f"Integrity error: {e}")  # log technique
+            bid_data['error_msg'].append("An error occurred while saving the data. Please try again later")
+            bid_data['created'] = False
+            
+        except DatabaseError as e:
+            
+            print(f"Database error: {e}")  # log technique
+            bid_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+            bid_data['created'] = False
     
     return bid_data
     
