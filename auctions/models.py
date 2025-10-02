@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
+from django.db.models import Max
 
 
 class User(AbstractUser):
@@ -24,7 +25,9 @@ class Listing(models.Model):
     title = models.CharField(max_length=64)
     description = models.TextField()
     start_bid = models.FloatField()
-    current_bid = models.FloatField()
+    
+    # current_bid = models.FloatField()
+    
     img_url = models.URLField(max_length=500, null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="open")
 
@@ -38,6 +41,12 @@ class Listing(models.Model):
     # timestamps
     created_at = models.DateTimeField(auto_now_add=True) # set once at creation
     updated_at = models.DateTimeField(auto_now=True)      # updates every save()
+    
+    @property
+    def current_bid(self):
+        """Retourne le dernier bid ou le start_bid si personne n’a encore enchéri"""
+        latest_bid = self.related_bids.aggregate(Max("value"))["value__max"]
+        return latest_bid if latest_bid is not None else self.start_bid
     
     @property
     def formatted_bid(self):
