@@ -204,3 +204,26 @@ def create_bid(request, listing_id):
         messages.error(request, "❌ You must be logged in to place a bid.")
         
     return redirect("auctions:view_listing", listing_id=listing_id)
+
+def close_auction(request, listing_id):
+    
+    print("get access to close auction view")
+    
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+        
+        if request.method == "POST":
+        
+            print('post request received in close auction route')
+            
+            close = util.close_auction(request.user, listing_id)
+    
+    else: 
+
+        print("error user not authenticated")
+        messages.error(request, "❌ You must be logged in to close the auction.")
+    
+    return redirect("auctions:view_listing", listing_id=listing_id)

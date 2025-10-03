@@ -240,3 +240,14 @@ def create_bid(user_obj, listing_id, new_price):
     
     return bid_data
     
+def close_auction(user_obj, listing_id,):
+    
+    print("init close auction function")
+    
+    print("user_obj:")
+    print(user_obj)
+    
+    print("listing_id")
+    print(listing_id)
+    
+    
