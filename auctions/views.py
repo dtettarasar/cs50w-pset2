@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib import messages
 
 from .models import User
 from .models import Category
@@ -190,9 +191,16 @@ def create_bid(request, listing_id):
             print('post request received in create bid route')
             bid = util.create_bid(request.user, listing_id, request.POST['listing-new-bid'])
             print(bid)
+            
+            if bid['created']:
+                messages.success(request, "✅ Your bid has been placed successfully!")
+            else:
+                for err in bid['error_msg']:
+                    messages.error(request, f"❌ {err}")
     
     else: 
 
         print("error user not authenticated")
+        messages.error(request, "❌ You must be logged in to place a bid.")
         
     return redirect("auctions:view_listing", listing_id=listing_id)
