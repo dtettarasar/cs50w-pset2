@@ -240,7 +240,3 @@ def create_bid(user_obj, listing_id, new_price):
     
     return bid_data
     
-    
-def get_latest_bid(listing_id):
-    
-    print("init get_latest_bid function")
