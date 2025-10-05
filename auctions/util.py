@@ -243,13 +243,10 @@ def create_bid(user_obj, listing_id, new_price):
 def close_auction(user_obj, listing_id,):
     
     close_auction_data = {
-        
         'auth_user': user_obj,
         'listing_id': listing_id,
         'listing_obj': None,
         'error_msg': [],
-        'auction_is_closed': None,
-        
     }
     
     print("init close auction function")
@@ -275,6 +272,14 @@ def close_auction(user_obj, listing_id,):
             
             print("Error: the authenticated user is not the listing creator")
             close_auction_data['error_msg'].append("Error: only the listing creator can close the auction")
+            
+        if close_auction_data['listing_obj'].status == 'closed':
+            
+            close_auction_data['error_msg'].append("Error: this auction is already closed")
+            
+        elif close_auction_data['listing_obj'].status == 'cancelled':
+            
+            close_auction_data['error_msg'].append("Error: this auction is cancelled and thus cannot be closed")
         
     else:
         
