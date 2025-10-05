@@ -244,7 +244,7 @@ def close_auction(user_obj, listing_id,):
     
     close_auction_data = {
         
-        'creator': user_obj,
+        'auth_user': user_obj,
         'listing_id': listing_id,
         'listing_obj': None,
         'error_msg': [],
@@ -260,6 +260,34 @@ def close_auction(user_obj, listing_id,):
         
         print("listing found")
         print(close_auction_data['listing_obj'])
+        
+        print("listing creator id:")
+        print(close_auction_data['listing_obj'].creator.id)
+        
+        print("authenticated user id:")
+        print(close_auction_data['auth_user'].id)
+        
+        if close_auction_data['listing_obj'].creator.id == close_auction_data['auth_user'].id:
+            
+            print("OK: authenticated user is the listing creator")
+            
+        else:
+            
+            print("Error: the authenticated user is not the listing creator")
+            close_auction_data['error_msg'].append("Error: only the listing creator can close the auction")
+        
+    else:
+        
+        close_auction_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+    
+    if len(close_auction_data['error_msg']) != 0:
+        
+        print("we cannot close the auction")
+        close_auction_data['auction_is_closed'] = False
+    
+    else:
+        
+        print("conditions are valid we can close the auction")
     
     print("close_auction_data")
     print(close_auction_data)
