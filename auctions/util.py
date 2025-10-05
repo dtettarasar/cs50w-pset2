@@ -242,12 +242,24 @@ def create_bid(user_obj, listing_id, new_price):
     
 def close_auction(user_obj, listing_id,):
     
+    close_auction_data = {
+        
+        'creator': user_obj,
+        'listing_id': listing_id,
+        'listing_obj': None,
+        'error_msg': [],
+        'auction_is_closed': None,
+        
+    }
+    
     print("init close auction function")
     
     print("user_obj:")
-    print(user_obj)
+    print(close_auction_data['creator'])
     
     print("listing_id")
-    print(listing_id)
+    print(close_auction_data['listing_id'])
+    
+    
     
     
