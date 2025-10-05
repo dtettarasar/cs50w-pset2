@@ -254,11 +254,15 @@ def close_auction(user_obj, listing_id,):
     
     print("init close auction function")
     
-    print("user_obj:")
-    print(close_auction_data['creator'])
+    close_auction_data['listing_obj'] = get_listing_by_id(close_auction_data['listing_id'])
     
-    print("listing_id")
-    print(close_auction_data['listing_id'])
+    if close_auction_data['listing_obj'] != None:
+        
+        print("listing found")
+        print(close_auction_data['listing_obj'])
+    
+    print("close_auction_data")
+    print(close_auction_data)
     
     
     
