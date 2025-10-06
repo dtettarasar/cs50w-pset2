@@ -246,6 +246,7 @@ def close_auction(user_obj, listing_id,):
         'auth_user': user_obj,
         'listing_id': listing_id,
         'listing_obj': None,
+        'latest_bid': None,
         'error_msg': [],
     }
     
@@ -263,6 +264,11 @@ def close_auction(user_obj, listing_id,):
         
         print("authenticated user id:")
         print(close_auction_data['auth_user'].id)
+        
+        print("get latest bid:")
+        
+        close_auction_data['latest_bid'] = close_auction_data['listing_obj'].related_bids.order_by('-value').first()
+        print(close_auction_data['latest_bid'])
         
         if close_auction_data['listing_obj'].creator.id == close_auction_data['auth_user'].id:
             
@@ -295,8 +301,15 @@ def close_auction(user_obj, listing_id,):
         print("conditions are valid we can close the auction")
         
         try:
-        
-            close_auction_data['listing_obj'].status = 'closed'
+            
+            if close_auction_data['latest_bid'] != None:
+            
+                close_auction_data['listing_obj'].status = 'closed'
+                
+            else:
+                
+                close_auction_data['listing_obj'].status = 'cancelled'
+            
             close_auction_data['listing_obj'].save()
             
         except IntegrityError as e:
