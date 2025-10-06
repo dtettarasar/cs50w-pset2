@@ -306,6 +306,7 @@ def close_auction(user_obj, listing_id,):
                 
                 print("latest bid found:", close_auction_data['latest_bid'])
                 close_auction_data['listing_obj'].status = 'closed'
+                close_auction_data['listing_obj'].winner = close_auction_data['latest_bid'].creator
                 
             else:
                 
