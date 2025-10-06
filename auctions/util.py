@@ -90,7 +90,7 @@ def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url
                 title = listing_data["title"],
                 description = listing_data["description"],
                 start_bid = listing_data['start_bid_float'],
-                current_bid = listing_data['start_bid_float'],
+                # current_bid = listing_data['start_bid_float'],
                 img_url = listing_data['img_url'],
                 creator = listing_data['creator'],
                 category = listing_data['category_obj'],
@@ -303,11 +303,13 @@ def close_auction(user_obj, listing_id,):
         try:
             
             if close_auction_data['latest_bid'] != None:
-            
+                
+                print("latest bid found:", close_auction_data['latest_bid'])
                 close_auction_data['listing_obj'].status = 'closed'
                 
             else:
                 
+                print("no bid found, cancelling auction")
                 close_auction_data['listing_obj'].status = 'cancelled'
             
             close_auction_data['listing_obj'].save()
