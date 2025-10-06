@@ -293,6 +293,21 @@ def close_auction(user_obj, listing_id,):
     else:
         
         print("conditions are valid we can close the auction")
+        
+        try:
+        
+            close_auction_data['listing_obj'].status = 'closed'
+            close_auction_data['listing_obj'].save()
+            
+        except IntegrityError as e:
+            
+            print(f"Integrity error: {e}")  # log technique
+            close_auction_data['error_msg'].append("An error occurred while closing the auction. Please try again later")
+            
+        except DatabaseError as e:
+            
+            print(f"Database error: {e}")  # log technique
+            close_auction_data['error_msg'].append("A technical problem has occurred. Please try again later.")
     
     print("close_auction_data")
     print(close_auction_data)
