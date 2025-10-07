@@ -227,3 +227,26 @@ def close_auction(request, listing_id):
         messages.error(request, "❌ You must be logged in to close the auction.")
     
     return redirect("auctions:view_listing", listing_id=listing_id)
+
+
+def add_to_watchlist(request, listing_id):
+    
+    print("get access to the add to watchlist view")
+    
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+        
+        if request.method == "POST":
+        
+            print('post request received in add to watchlist route')
+            
+    
+    else: 
+
+        print("error user not authenticated")
+        messages.error(request, "❌ You must be logged in to add to watchlist.")
+    
+    return redirect("auctions:view_listing", listing_id=listing_id)

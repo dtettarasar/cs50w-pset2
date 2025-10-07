@@ -93,7 +93,13 @@
 
                                 {% elif not user_is_listing_creator and listing.status == 'open' %}
 
-                                    <button type="button" class="btn btn-primary"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
+                                    <form action="{% url 'auctions:add_to_watchlist' listing.id %}" method="post" >
+                                        
+                                        {% csrf_token %}
+
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
+                                    
+                                    </form>
 
                                 {% endif %}
                                 
