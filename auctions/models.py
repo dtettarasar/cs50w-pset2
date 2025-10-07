@@ -90,3 +90,18 @@ class Bid(models.Model):
     
     def __str__(self):
         return f"Bid {self.value:.2f} by {self.creator} on {self.listing}"
+    
+class WatchListItem(models.Model):
+    
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,blank=True, related_name="created_watch_list_items")
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE, null=True, related_name="related_watch_list_items")
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        
+        constraints = [
+            models.UniqueConstraint(fields=['creator', 'listing'], name='unique_watchlist_item')
+        ]
+        
+    def __str__(self):
+        return f"WatchlistItem: {self.creator} -> {self.listing.title}"
