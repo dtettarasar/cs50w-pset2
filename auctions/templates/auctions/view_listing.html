@@ -37,6 +37,26 @@
 
                     <p class="fs-4">{{ listing.description }}</p>
 
+                    {% if listing.status == 'closed' %}
+
+                        {% if listing.winner.id == user.id %}
+
+                            <p> you won this auction! </p>
+
+                        {% elif listing.creator.id == user.id %}
+
+                            <p> you have closed the auction </p>
+
+                        {% else %}
+
+                            <p> this listing is now closed </p>
+
+                        {% endif %}
+
+                    {% endif %}
+
+                    <p class="fs-4">Status: {{ listing.status }}</p>
+
                     <ul class="list-group fs-5">
 
                         <li class="list-group-item">
