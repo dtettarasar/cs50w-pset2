@@ -81,11 +81,11 @@
 
                             <div class="btn-group mt-3 btn-group-lg" role="group" aria-label="Basic example">
 
-                                {% if user_is_listing_creator %}
+                                {% if user_is_listing_creator and listing.status == 'open' %}
 
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#confirmAuctionClose" class="btn btn-success"><i class="bi bi-bookmark-check-fill"></i> Close the auction</button>
 
-                                {% else %}
+                                {% elif not user_is_listing_creator and listing.status == 'open' %}
 
                                     <button type="button" class="btn btn-primary"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
 
@@ -93,7 +93,7 @@
                                 
                             </div>
 
-                            {% if not user_is_listing_creator %}
+                            {% if not user_is_listing_creator and listing.status == 'open' %}
 
                                 <div class="mt-3">
                                     
