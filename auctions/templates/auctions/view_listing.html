@@ -41,15 +41,21 @@
 
                         {% if listing.winner.id == user.id %}
 
-                            <p> you won this auction! </p>
+                            <div class="alert alert-success" role="alert">
+                                <span class="fs-5"><i class="bi bi-bookmark-check-fill"></i> You won this auction!</span>
+                            </div>
 
                         {% elif listing.creator.id == user.id %}
-
-                            <p> you have closed the auction </p>
+                            
+                            <div class="alert alert-primary" role="alert">
+                                <span class="fs-5"><i class="bi bi-info-circle-fill"></i> You have closed the auction</span>
+                            </div>
 
                         {% else %}
 
-                            <p> this listing is now closed </p>
+                            <div class="alert alert-primary" role="alert">
+                                <span class="fs-5"><i class="bi bi-info-circle-fill"></i> The auction is now closed</span>
+                            </div>
 
                         {% endif %}
 
