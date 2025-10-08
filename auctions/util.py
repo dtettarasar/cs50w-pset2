@@ -328,10 +328,18 @@ def close_auction(user_obj, listing_id,):
     print("close_auction_data")
     print(close_auction_data)
     
-def add_to_watchlist():
+def add_to_watchlist(user_id, listing_id):
         
     print("init add to watchlist util function")
     
+    watchlist_data = {
+        
+        'listing_id': listing_id,
+        'auth_user_id': user_id,
+        
+    }
+    
+    return watchlist_data
     
     
     
