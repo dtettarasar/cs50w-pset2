@@ -243,6 +243,8 @@ def add_to_watchlist(request, listing_id):
         
             print('post request received in add to watchlist route')
             
+            util.add_to_watchlist()
+            
     
     else: 
 

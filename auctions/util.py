@@ -328,6 +328,10 @@ def close_auction(user_obj, listing_id,):
     print("close_auction_data")
     print(close_auction_data)
     
+def add_to_watchlist():
+        
+    print("init add to watchlist util function")
+    
     
     
     
