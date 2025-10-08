@@ -422,11 +422,13 @@ def add_to_watchlist(user_id, listing_id):
             
             print(f"Integrity error: {e}")  # log technique
             watchlist_to_add['error_msg'].append("An error occurred while adding the item to your watchlist. Please try again later")
+            watchlist_data['created'] = False
             
         except DatabaseError as e:
             
             print(f"Database error: {e}")  # log technique
             watchlist_to_add['error_msg'].append("A technical problem has occurred. Please try again later.")
+            watchlist_data['created'] = False
         
     return watchlist_data
     
