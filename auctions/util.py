@@ -357,12 +357,15 @@ def add_to_watchlist(user_id, listing_id):
         'auth_user_id': user_id,
         'auth_user_obj': None,
         'listing_obj': None,
+        'error_msg': [],
         
     }
     
     watchlist_data['auth_user_obj'] = get_user_by_id(watchlist_data['auth_user_id'])
+    watchlist_data['listing_obj'] = get_listing_by_id(watchlist_data['listing_id'])
     
-    
+    if watchlist_data['auth_user_obj'] == None or watchlist_data['listing_obj'] == None:
+        watchlist_data['error_msg'].append("A technical problem has occurred. Please try again later.")
     
     return watchlist_data
     
