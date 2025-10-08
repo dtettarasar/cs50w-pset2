@@ -6,6 +6,7 @@ from .models import Listing
 from .models import Category
 from .models import Bid
 from .models import User
+from .models import WatchListItem
 
 def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category_id):
     
@@ -358,6 +359,7 @@ def add_to_watchlist(user_id, listing_id):
         'auth_user_obj': None,
         'listing_obj': None,
         'error_msg': [],
+        'created': None,
         
     }
     
@@ -367,6 +369,45 @@ def add_to_watchlist(user_id, listing_id):
     if watchlist_data['auth_user_obj'] == None or watchlist_data['listing_obj'] == None:
         watchlist_data['error_msg'].append("A technical problem has occurred. Please try again later.")
     
+    # Possible improvements to work later: 
+    # Add condition to check if the authenticated user is not the listing creator: This condition should be True, to create the watchlist Item
+    # Check the listing status: A user can create add to watchtlist only if the listing has its status set to "open"
+    
+    if len(watchlist_data['error_msg']) != 0:
+        
+        print("cannot insert the watchlist item")
+        watchlist_data["created"] == False
+        
+    else:
+        
+        print("watchlist item can be created")
+        
+        try:
+            
+            watchlist_to_add = WatchListItem (
+                
+                creator = watchlist_data['auth_user_obj'],
+                listing = watchlist_data['listing_obj'],
+                
+            )
+            
+            watchlist_to_add.save()
+            
+            print("inserted watchlist item: ")
+            print(watchlist_to_add)
+            
+            watchlist_data['created'] = True
+
+        except IntegrityError as e:
+            
+            print(f"Integrity error: {e}")  # log technique
+            watchlist_to_add['error_msg'].append("An error occurred while adding the item to your watchlist. Please try again later")
+            
+        except DatabaseError as e:
+            
+            print(f"Database error: {e}")  # log technique
+            watchlist_to_add['error_msg'].append("A technical problem has occurred. Please try again later.")
+        
     return watchlist_data
     
     
