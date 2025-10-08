@@ -360,6 +360,7 @@ def add_to_watchlist(user_id, listing_id):
         'listing_obj': None,
         'error_msg': [],
         'created': None,
+        'already_exists': False,
         
     }
     
@@ -368,6 +369,25 @@ def add_to_watchlist(user_id, listing_id):
     
     if watchlist_data['auth_user_obj'] == None or watchlist_data['listing_obj'] == None:
         watchlist_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+        watchlist_data["created"] == False
+        return watchlist_data
+    
+    # Verify if a watchlist item already exist for the provided user and listing
+    existing_item = WatchListItem.objects.filter(
+        creator=watchlist_data['auth_user_obj'],
+        listing=watchlist_data['listing_obj']
+    ).first()
+    
+    if existing_item:
+        
+        watchlist_data['already_exists'] = True
+        watchlist_data['created'] = False
+        
+        print("Watchlist item already exists for this user/listing pair.")
+        
+        watchlist_data['error_msg'].append("This listing is already in your watchlist.")
+        
+        return watchlist_data
     
     # Possible improvements to work later: 
     # Add condition to check if the authenticated user is not the listing creator: This condition should be True, to create the watchlist Item
