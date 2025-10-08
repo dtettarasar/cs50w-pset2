@@ -5,6 +5,7 @@ from django.db import DatabaseError, IntegrityError
 from .models import Listing
 from .models import Category
 from .models import Bid
+from .models import User
 
 def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category_id):
     
@@ -140,6 +141,24 @@ def get_listing_by_id(listing_id):
     
     except Listing.MultipleObjectsReturned:
         print(f"⚠️ Multiple listings found with id {listing_id} (shouldn’t happen!)")
+        return None
+    
+def get_user_by_id(user_id):
+    
+    print("init get_user_by_id")
+    print(f"request data for listing: {user_id}")
+    
+    try: 
+        
+        user = User.objects.get(pk=user_id)
+        return user
+    
+    except User.DoesNotExist:
+        print(f"⚠️ No user found with id {user_id}")
+        return None
+    
+    except User.MultipleObjectsReturned:
+        print(f"⚠️ Multiple users found with id {user_id} (shouldn’t happen!)")
         return None
     
 def create_bid(user_obj, listing_id, new_price):
@@ -336,8 +355,14 @@ def add_to_watchlist(user_id, listing_id):
         
         'listing_id': listing_id,
         'auth_user_id': user_id,
+        'auth_user_obj': None,
+        'listing_obj': None,
         
     }
+    
+    watchlist_data['auth_user_obj'] = get_user_by_id(watchlist_data['auth_user_id'])
+    
+    
     
     return watchlist_data
     
