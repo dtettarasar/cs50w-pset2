@@ -62,6 +62,9 @@ def view_listing(request, listing_id):
             
             print("the user is not the listing creator")
             user_is_listing_creator = False
+            
+        print("verify if listing is in user watchlist")
+        util.listing_in_user_watchlist(request.user.id, listing.id)
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,

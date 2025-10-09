@@ -433,4 +433,9 @@ def add_to_watchlist(user_id, listing_id):
     return watchlist_data
     
     
+def listing_in_user_watchlist(user_id, listing_id):
+        
+    print("init listing_in_user_watchlist function")
     
+    print(f"user_id: {user_id}")
+    print(f"listing_id: {listing_id}")
