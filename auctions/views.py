@@ -223,7 +223,9 @@ def close_auction(request, listing_id):
         
             print('post request received in close auction route')
             
-            close = util.close_auction(request.user, listing_id)
+            close_auction_data = util.close_auction(request.user, listing_id)
+            print('close_auction_data')
+            print(close_auction_data)
     
     else: 
 

@@ -260,7 +260,7 @@ def create_bid(user_obj, listing_id, new_price):
     
     return bid_data
     
-def close_auction(user_obj, listing_id,):
+def close_auction(user_obj, listing_id):
     
     close_auction_data = {
         'auth_user': user_obj,
@@ -276,19 +276,19 @@ def close_auction(user_obj, listing_id,):
     
     if close_auction_data['listing_obj'] != None:
         
-        print("listing found")
-        print(close_auction_data['listing_obj'])
+        # print("listing found")
+        # print(close_auction_data['listing_obj'])
         
-        print("listing creator id:")
-        print(close_auction_data['listing_obj'].creator.id)
+        # print("listing creator id:")
+        # print(close_auction_data['listing_obj'].creator.id)
         
-        print("authenticated user id:")
-        print(close_auction_data['auth_user'].id)
+        # print("authenticated user id:")
+        # print(close_auction_data['auth_user'].id)
         
-        print("get latest bid:")
+        # print("get latest bid:")
         
         close_auction_data['latest_bid'] = close_auction_data['listing_obj'].related_bids.order_by('-value').first()
-        print(close_auction_data['latest_bid'])
+        # print(close_auction_data['latest_bid'])
         
         if close_auction_data['listing_obj'].creator.id == close_auction_data['auth_user'].id:
             
@@ -345,8 +345,10 @@ def close_auction(user_obj, listing_id,):
             print(f"Database error: {e}")  # log technique
             close_auction_data['error_msg'].append("A technical problem has occurred. Please try again later.")
     
-    print("close_auction_data")
-    print(close_auction_data)
+    # print("close_auction_data")
+    # print(close_auction_data)
+    
+    return close_auction_data
     
 def add_to_watchlist(user_id, listing_id):
         
@@ -379,7 +381,7 @@ def add_to_watchlist(user_id, listing_id):
         watchlist_data['already_exists'] = True
         watchlist_data['created'] = False
         
-        print("Watchlist item already exists for this user/listing pair.")
+        # print("Watchlist item already exists for this user/listing pair.")
         
         watchlist_data['error_msg'].append("This listing is already in your watchlist.")
         
@@ -391,12 +393,12 @@ def add_to_watchlist(user_id, listing_id):
     
     if len(watchlist_data['error_msg']) != 0:
         
-        print("cannot insert the watchlist item")
+        # print("cannot insert the watchlist item")
         watchlist_data["created"] == False
         
     else:
         
-        print("watchlist item can be created")
+        # print("watchlist item can be created")
         
         try:
             
@@ -409,8 +411,8 @@ def add_to_watchlist(user_id, listing_id):
             
             watchlist_to_add.save()
             
-            print("inserted watchlist item: ")
-            print(watchlist_to_add)
+            # print("inserted watchlist item: ")
+            # print(watchlist_to_add)
             
             watchlist_data['created'] = True
 
@@ -479,8 +481,8 @@ def listing_in_user_watchlist(user_id, listing_id):
         
     print("init listing_in_user_watchlist function")
     
-    print(f"user_id: {user_id}")
-    print(f"listing_id: {listing_id}")
+    # print(f"user_id: {user_id}")
+    # print(f"listing_id: {listing_id}")
     
     user_obj = get_user_by_id(user_id)
     listing_obj = get_listing_by_id(listing_id)
