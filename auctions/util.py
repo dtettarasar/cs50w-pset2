@@ -372,11 +372,7 @@ def add_to_watchlist(user_id, listing_id):
         watchlist_data["created"] == False
         return watchlist_data
     
-    # Verify if a watchlist item already exist for the provided user and listing
-    existing_item = WatchListItem.objects.filter(
-        creator=watchlist_data['auth_user_obj'],
-        listing=watchlist_data['listing_obj']
-    ).first()
+    existing_item = listing_in_user_watchlist(watchlist_data['auth_user_id'], watchlist_data['listing_id'])
     
     if existing_item:
         
@@ -434,8 +430,25 @@ def add_to_watchlist(user_id, listing_id):
     
     
 def listing_in_user_watchlist(user_id, listing_id):
+    
+    # Verify if a watchlist item already exist for the provided user and listing
         
     print("init listing_in_user_watchlist function")
     
     print(f"user_id: {user_id}")
     print(f"listing_id: {listing_id}")
+    
+    user_obj = get_user_by_id(user_id)
+    listing_obj = get_listing_by_id(listing_id)
+    
+    if user_obj == None or listing_obj == None:
+        
+        print("error: can't retrieve user and listing data")
+        return False
+    
+    existing_item = WatchListItem.objects.filter(
+        creator=user_obj,
+        listing=listing_obj
+    ).first()
+    
+    return existing_item
