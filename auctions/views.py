@@ -64,12 +64,13 @@ def view_listing(request, listing_id):
             user_is_listing_creator = False
             
         print("verify if listing is in user watchlist")
-        util.listing_in_user_watchlist(request.user.id, listing.id)
+        listing_in_user_watchlist = util.listing_in_user_watchlist(request.user.id, listing.id)
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
         'listing': listing,
-        'user_is_listing_creator': user_is_listing_creator
+        'user_is_listing_creator': user_is_listing_creator,
+        'listing_in_user_watchlist': listing_in_user_watchlist
     })
 
 
