@@ -466,6 +466,18 @@ def remove_from_watchlist(user_id, listing_id):
             print("found the watchlist item we can delete it: ")
             print(existing_item)
             
+            try:
+                
+                deleted_count, _ = existing_item.delete()
+                watchlist_data["deleted"] = deleted_count > 0
+                
+            except Exception as e:
+                
+                print(f"Error deleting watchlist item: {e}")
+                watchlist_data["deleted"] = False
+                watchlist_data['error_msg'].append(technical_err_msg)
+                return watchlist_data
+            
         else:
             
             print("error: can't retrieve the watchlist item")
