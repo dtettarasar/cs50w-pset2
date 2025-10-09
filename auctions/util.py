@@ -428,7 +428,6 @@ def add_to_watchlist(user_id, listing_id):
         
     return watchlist_data
 
-
 def remove_from_watchlist(user_id, listing_id):
     
     print("init remove from watchlist util function")

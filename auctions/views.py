@@ -259,3 +259,30 @@ def add_to_watchlist(request, listing_id):
         messages.error(request, "❌ You must be logged in to add to watchlist.")
     
     return redirect("auctions:view_listing", listing_id=listing_id)
+
+
+def remove_from_watchlist(request, listing_id):
+    
+    print("get access to the remove from watchlist view")
+    
+    if request.user.is_authenticated:
+
+        print("user is authenticated")
+
+        user_id = request.user.id
+        
+        if request.method == "POST":
+        
+            print('post request received in add to watchlist route')
+            
+            watchlist_data = util.remove_from_watchlist(user_id, listing_id)
+            
+            print("watchlist_data: ")
+            print(watchlist_data)
+            
+    else: 
+
+        print("error user not authenticated")
+        messages.error(request, "❌ You must be logged in to add to watchlist.")
+    
+    return redirect("auctions:view_listing", listing_id=listing_id)
