@@ -15,11 +15,21 @@ def index(request):
     print("get access to index page")
     
     active_listings = util.get_active_listings()
-    print("active_listing:")
-    print(active_listings)
+    user_watchlist_ids = []
+    
+    # print("active_listing:")
+    # print(active_listings)
+    
+    if request.user.is_authenticated:
+        
+        user_watchlist_ids = (
+            request.user.created_watch_list_items
+            .values_list("listing__id", flat=True)
+        )
     
     return render(request, "auctions/index.html", {
-        "active_listings": active_listings
+        "active_listings": active_listings,
+        "user_watchlist_ids": user_watchlist_ids,
     })
 
 def view_listing(request, listing_id):

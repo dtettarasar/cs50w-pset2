@@ -45,13 +45,23 @@
 
                             {% if user.is_authenticated and user.id != listing.creator.id %}
 
-                                <form class="mt-2" action="{% url 'auctions:add_to_watchlist' listing.id %}" method="post" >
+                                {% if listing.id in user_watchlist_ids %}
 
-                                    {% csrf_token %}
-                                    <input type="hidden" name="next" value="{% url 'auctions:index' %}">
-                                    <button type="submit" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
 
-                                </form>
+
+                                {% else %}
+
+                                    <form class="mt-2" action="{% url 'auctions:add_to_watchlist' listing.id %}" method="post" >
+
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{% url 'auctions:index' %}">
+                                        <button type="submit" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
+
+                                    </form>
+
+                                {% endif %}
+
+                                
 
                             {% endif %}
 
