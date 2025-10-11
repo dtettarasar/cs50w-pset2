@@ -299,6 +299,13 @@ def remove_from_watchlist(request, listing_id):
             print("watchlist_data: ")
             print(watchlist_data)
             
+            print('request.POST.get("next")')
+            print(request.POST.get("next"))
+            
+            next_url = request.POST.get("next") or reverse("auctions:index")
+            
+            return redirect(next_url)
+            
     else: 
 
         print("error user not authenticated")
