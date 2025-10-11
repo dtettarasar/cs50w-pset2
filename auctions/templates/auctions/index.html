@@ -48,7 +48,7 @@
                                 <form class="mt-2" action="{% url 'auctions:add_to_watchlist' listing.id %}" method="post" >
 
                                     {% csrf_token %}
-                                    <input type="hidden" name="next" value="{% url 'auctions:view_listing' listing.id %}">
+                                    <input type="hidden" name="next" value="{% url 'auctions:index' %}">
                                     <button type="submit" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
 
                                 </form>
