@@ -167,12 +167,13 @@ def create_listing(request):
                 "errors": listing_data['error_msg']
             })
             
-        else: 
+        elif listing_data['created']: 
             
-            # Si le process est valid. Pour le moment on redirige vers la page de la création de l'annonce, mais après, il faudra rediriger vers la page de la nouvelle annonce créée
-            return render(request, 'auctions/create_listing.html', {
-                "cat_list" : cat_list,
-            })
+            print("listing successfully created, we can now redirect to the new listing page")
+            print("new listing id: ")
+            print(listing_data['listing_obj'].id)
+            
+            return redirect("auctions:view_listing", listing_id=listing_data['listing_obj'].id)
             
     else:
         
