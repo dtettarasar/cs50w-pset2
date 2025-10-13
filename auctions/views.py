@@ -326,12 +326,7 @@ def watchlist(request):
     
     if request.user.is_authenticated:
         
-        user_watchlist_ids = (
-            request.user.created_watch_list_items
-            .values_list("listing__id", flat=True)
-        )
-        
-        user_watchlist = WatchListItem.objects.filter(creator=request.user)
+        user_watchlist = WatchListItem.objects.filter(creator=request.user).select_related('listing')
         
         print("user watchlist")
         print(user_watchlist)
