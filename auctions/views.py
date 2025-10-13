@@ -7,6 +7,7 @@ from django.contrib import messages
 
 from .models import User
 from .models import Category
+from .models import WatchListItem
 
 from . import util
 
@@ -329,8 +330,12 @@ def watchlist(request):
             request.user.created_watch_list_items
             .values_list("listing__id", flat=True)
         )
+        
+        user_watchlist = WatchListItem.objects.filter(creator=request.user)
+        
+        print("user watchlist")
+        print(user_watchlist)
     
     return render(request, "auctions/watchlist.html", {
-        "active_listings": active_listings,
-        "user_watchlist_ids": user_watchlist_ids,
+        "user_watchlist": user_watchlist,
     })

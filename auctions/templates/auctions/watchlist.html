@@ -22,7 +22,19 @@
 
         {% if user.is_authenticated %}
 
+            <div class="row" data-masonry='{"percentPosition": true }'>
 
+                {% for listing in user_watchlist %}
+
+                    <div class="col-sm-4 mt-3">
+                        
+                        
+
+                    <div>
+                
+                {% endfor %}
+
+            </div>
 
         {% else %}
 
