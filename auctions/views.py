@@ -321,6 +321,8 @@ def watchlist(request):
     active_listings = util.get_active_listings()
     user_watchlist_ids = []
     
+    user_watchlist = None
+    
     # print("active_listing:")
     # print(active_listings)
     
