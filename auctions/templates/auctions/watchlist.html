@@ -24,14 +24,48 @@
 
             <div class="row" data-masonry='{"percentPosition": true }'>
 
-                {% for listing in user_watchlist %}
+                {% for watchlist in user_watchlist %}
 
                     <div class="col-sm-4 mt-3">
-                        
-                        
 
-                    <div>
-                
+                        <div class="card">
+
+                            {% if watchlist.listing.img_url %}
+
+                                <img class="card-img-top" src="{{ watchlist.listing.img_url }}">
+
+                            {% else %}
+
+                                <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="card-img-top" alt="Placeholder image">
+
+                            {% endif %}
+
+                            <div class="card-body">
+
+                                <h3 class="card-title">{{ watchlist.listing.title }}</h3>
+                                <p class="card-text">{{ watchlist.listing.description }}</p>
+                                <a href="{% url 'auctions:view_listing' watchlist.listing.id %}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
+
+                            </div>
+
+                            <ul class="list-group list-group-flush h5">
+                                
+                                <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ watchlist.listing.creator.username }}</li>
+                                <li class="list-group-item"><strong><i class="bi bi-calendar"></i> Created at:</strong> {{ watchlist.listing.formatted_date }}</li>
+
+                                {% if listing.category.cat_name %}
+                                    <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ watchlist.listing.category.cat_name }}</li>
+                                {% endif %}
+
+
+                                <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ watchlist.listing.formatted_bid }}</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
                 {% endfor %}
 
             </div>
