@@ -61,7 +61,7 @@
                                 <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ watchlist.listing.creator.username }}</li>
                                 <li class="list-group-item"><strong><i class="bi bi-calendar"></i> Created at:</strong> {{ watchlist.listing.formatted_date }}</li>
 
-                                {% if listing.category.cat_name %}
+                                {% if watchlist.listing.category.cat_name %}
                                     <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ watchlist.listing.category.cat_name }}</li>
                                 {% endif %}
 
