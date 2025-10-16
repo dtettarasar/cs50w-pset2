@@ -177,7 +177,21 @@
 
             {% else %}
 
-                <p> add the message to inform users should be logged in to add a comment </p>
+                <div class="alert alert-info mt-3 fs-5" role="alert">
+
+                    <i class="bi bi-info-circle-fill"></i> Please make sure you're logged in to your account to add a comment.
+
+                </div>
+
+                <div class="mt-3">
+
+                    <button type="button" class="btn btn-primary">
+                        <a class="fs-5" style="color:#fff;text-decoration:none;" href="{% url 'auctions:login' %}">
+                            <i class="bi bi-person-fill-check"></i> Log in
+                        </a>
+                    </button>
+
+                </div>
 
             {%endif%}
 
