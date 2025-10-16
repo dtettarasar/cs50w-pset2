@@ -189,7 +189,22 @@
 
             {% if user.is_authenticated %} 
 
-                <p>section to add the comment form here</p>
+                <form>
+
+                    {% csrf_token %}
+
+                    <legend>Write a comment</legend>
+
+                    <div class="mb-3">
+
+                        <label for="listing-description" class="form-label">Your text</label>
+                        <textarea class="form-control" name="listing-description" id="listing-description" rows="3"></textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Publish</button>
+
+                </form>
 
             {% else %}
 
