@@ -37,3 +37,18 @@ body {
   font-size: 4rem;
   color: #fff;
 }
+
+/* separator */
+
+
+hr.dashed {
+    border-top: 3px dashed #2575fc;
+}
+
+hr.dotted {
+    border-top: 3px dotted #2575fc;
+}
+
+hr.solid {
+    border-top: 3px solid #2575fc;
+}

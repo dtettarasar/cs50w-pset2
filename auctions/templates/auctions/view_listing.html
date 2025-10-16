@@ -157,7 +157,21 @@
 
                     {% else %}
 
-                            Not signed in. we can add a message to invite user to register or login, to access features
+                            <div class="alert alert-info mt-3 fs-5" role="alert">
+
+                                <i class="bi bi-info-circle-fill"></i> Interested in this listing? Login to your account, to place a bid or add to your watchlist :) !
+
+                            </div>
+
+                            <div class="mt-3">
+
+                                <button type="button" class="btn btn-primary">
+                                    <a class="fs-5" style="color:#fff;text-decoration:none;" href="{% url 'auctions:login' %}">
+                                        <i class="bi bi-person-fill-check"></i> Log in
+                                    </a>
+                                </button>
+
+                            </div>
 
                     {% endif %}
 
@@ -168,6 +182,8 @@
         </div>
 
         <div class="container mt-4">
+
+            <hr class="dotted">
 
             <p class="fs-4">Comments</p>
 
@@ -180,16 +196,6 @@
                 <div class="alert alert-info mt-3 fs-5" role="alert">
 
                     <i class="bi bi-info-circle-fill"></i> Please make sure you're logged in to your account to add a comment.
-
-                </div>
-
-                <div class="mt-3">
-
-                    <button type="button" class="btn btn-primary">
-                        <a class="fs-5" style="color:#fff;text-decoration:none;" href="{% url 'auctions:login' %}">
-                            <i class="bi bi-person-fill-check"></i> Log in
-                        </a>
-                    </button>
 
                 </div>
 
