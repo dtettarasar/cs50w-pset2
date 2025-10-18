@@ -39,20 +39,8 @@ def view_listing(request, listing_id):
     
     user_is_listing_creator = None
     listing_in_user_watchlist = None
-    
-    if request.user.is_authenticated:
-
-        # print("user is authenticated")
-
-        user_id = request.user.id
-
-        # print(f"user_id: {user_id}")
-    
-    # else: 
-
-        # print("user not authenticated")
-    
     listing = None
+    listing_comments = None
     
     
     if listing_id.isdigit():
@@ -83,12 +71,18 @@ def view_listing(request, listing_id):
             
         
         print("retrieve comments for the listing")
+        
+        listing_comments = listing.related_comments.select_related("creator").order_by("-created_at")
+        
+        print("COMMENTS:", listing_comments)
+        
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
         'listing': listing,
         'user_is_listing_creator': user_is_listing_creator,
-        'listing_in_user_watchlist': listing_in_user_watchlist
+        'listing_in_user_watchlist': listing_in_user_watchlist,
+        'listing_comments': listing_comments
     })
 
 
