@@ -41,6 +41,7 @@ def view_listing(request, listing_id):
     listing_in_user_watchlist = None
     listing = None
     listing_comments = None
+    number_of_comments = 0
     
     
     if listing_id.isdigit():
@@ -74,6 +75,8 @@ def view_listing(request, listing_id):
         
         listing_comments = listing.related_comments.select_related("creator").order_by("-created_at")
         
+        number_of_comments = len(listing_comments)
+        
         print("COMMENTS:", listing_comments)
         
     
@@ -82,7 +85,8 @@ def view_listing(request, listing_id):
         'listing': listing,
         'user_is_listing_creator': user_is_listing_creator,
         'listing_in_user_watchlist': listing_in_user_watchlist,
-        'listing_comments': listing_comments
+        'listing_comments': listing_comments,
+        'number_of_comments': number_of_comments
     })
 
 

@@ -217,6 +217,28 @@
 
             {%endif%}
 
+            <hr class="dotted">
+
+            {% if listing_comments %}
+
+                <p> {{ number_of_comments }} comment(s) </p>
+
+                <ul>
+                    {% for comment in listing_comments %}
+                        <li>
+                            <strong>{{ comment.creator.username }}</strong>  
+                            <small>{{ comment.formatted_date }}</small><br>
+                            {{ comment.content }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+
+                <p>No comments yet.</p>
+
+            {% endif %}
+
         </div>
     
     {% else %}
