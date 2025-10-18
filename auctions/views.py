@@ -38,6 +38,7 @@ def view_listing(request, listing_id):
     # print("accessing view listing page")
     
     user_is_listing_creator = None
+    listing_in_user_watchlist = None
     
     if request.user.is_authenticated:
 
@@ -61,21 +62,27 @@ def view_listing(request, listing_id):
     
     if listing != None:
         
-        print("verify if user is creator")
-        print(listing.creator.id)
+        if request.user.is_authenticated:
         
-        if listing.creator.id == request.user.id:
+            print("verify if user is creator")
+            print(listing.creator.id)
+        
+            if listing.creator.id == request.user.id:
             
-            print("the user is the listing creator")
-            user_is_listing_creator = True
+                print("the user is the listing creator")
+                user_is_listing_creator = True
             
-        else:
+            else:
             
-            print("the user is not the listing creator")
-            user_is_listing_creator = False
+                print("the user is not the listing creator")
+                user_is_listing_creator = False
             
-        print("verify if listing is in user watchlist")
-        listing_in_user_watchlist = util.listing_in_user_watchlist(request.user.id, listing.id)
+            
+            print("verify if listing is in user watchlist")
+            listing_in_user_watchlist = util.listing_in_user_watchlist(request.user.id, listing.id)
+            
+        
+        print("retrieve comments for the listing")
     
     return render(request, "auctions/view_listing.html", {
         'listing_id': listing_id,
