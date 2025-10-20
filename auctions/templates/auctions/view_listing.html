@@ -221,17 +221,36 @@
 
             {% if listing_comments %}
 
-                <p> {{ number_of_comments }} comment(s) </p>
+                <p class="fs-4">Recent comment(s)</p>
 
-                <ul>
-                    {% for comment in listing_comments %}
-                        <li>
-                            <strong>{{ comment.creator.username }}</strong>  
-                            <small>{{ comment.formatted_date }}</small><br>
+                <p> {{ number_of_comments }} comment(s) published by users </p>
+
+                {% for comment in listing_comments %}
+
+                <div class="d-flex flex-start">
+
+                    <div>
+                        <h6 class="fw-bold mb-1">{{ comment.creator.username }}</h6>
+
+                        <div class="d-flex align-items-center mb-3">
+
+                            <p class="mb-0">
+                                {{ comment.formatted_date }}
+                            </p>
+
+                        </div>
+                        
+                        <p class="mb-0">
                             {{ comment.content }}
-                        </li>
-                    {% endfor %}
-                </ul>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <hr class="solid">
+
+                {% endfor %}
 
             {% else %}
 
