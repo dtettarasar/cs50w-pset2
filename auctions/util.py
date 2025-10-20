@@ -510,3 +510,13 @@ def listing_in_user_watchlist(user_id, listing_id):
     ).first()
     
     return existing_item
+
+def add_comment(user_id, listing_id, comment_content):
+    
+    print("init the add comment util function")
+    
+    print({
+        "user_id": user_id,
+        "listing_id": listing_id,
+        "comment_content": comment_content
+    })

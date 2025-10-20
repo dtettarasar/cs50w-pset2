@@ -353,15 +353,13 @@ def add_comment(request, listing_id):
         if request.method == "POST":
             
             print('post request received in add comment route')
+
+            comment_to_insert = util.add_comment(
+                request.user.id,
+                listing_id,
+                request.POST["comment-content"]
+            )
             
-            user_id = request.user.id
-            
-            print({
-                "user_id" : user_id,
-                "listing_id": listing_id,
-                "comment": request.POST["comment-content"]
-            })
-        
     else:
         
         print("error user not authenticated")
