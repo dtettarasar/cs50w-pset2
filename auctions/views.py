@@ -341,3 +341,31 @@ def watchlist(request):
     return render(request, "auctions/watchlist.html", {
         "user_watchlist": user_watchlist,
     })
+    
+def add_comment(request, listing_id):
+    
+    print("get access to the add comment view")
+    
+    if request.user.is_authenticated:
+        
+        print("user is authenticated")
+        
+        if request.method == "POST":
+            
+            print('post request received in add comment route')
+            
+            user_id = request.user.id
+            
+            print({
+                "user_id" : user_id,
+                "listing_id": listing_id,
+                "comment": request.POST["comment-content"]
+            })
+        
+    else:
+        
+        print("error user not authenticated")
+        
+        messages.error(request, "❌ You must be logged in to add a comment.")
+        
+    return redirect("auctions:view_listing", listing_id=listing_id)

@@ -190,7 +190,7 @@
 
             {% if user.is_authenticated %} 
 
-                <form>
+                <form action="{% url 'auctions:add_comment' listing.id %}" method="post">
 
                     {% csrf_token %}
 
@@ -198,8 +198,8 @@
 
                     <div class="mb-3">
 
-                        <label for="listing-description" class="form-label">Your text</label>
-                        <textarea class="form-control" name="listing-description" id="listing-description" rows="3"></textarea>
+                        <label for="comment-content" class="form-label">Your text</label>
+                        <textarea class="form-control" name="comment-content" id="comment-content" rows="3"></textarea>
 
                     </div>
 
