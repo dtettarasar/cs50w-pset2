@@ -420,13 +420,13 @@ def add_to_watchlist(user_id, listing_id):
         except IntegrityError as e:
             
             print(f"Integrity error: {e}")  # log technique
-            watchlist_to_add['error_msg'].append("An error occurred while adding the item to your watchlist. Please try again later")
+            watchlist_data['error_msg'].append("An error occurred while adding the item to your watchlist. Please try again later")
             watchlist_data['created'] = False
             
         except DatabaseError as e:
             
             print(f"Database error: {e}")  # log technique
-            watchlist_to_add['error_msg'].append("A technical problem has occurred. Please try again later.")
+            watchlist_data['error_msg'].append("A technical problem has occurred. Please try again later.")
             watchlist_data['created'] = False
         
     return watchlist_data
@@ -516,18 +516,56 @@ def add_comment(user_id, listing_id, comment_content):
     
     print("init the add comment util function")
     
+    technical_err_msg = "A technical problem has occurred. Please try again later."
+    
     comment_data = {
         
         "user_id": user_id,
         "listing_id": listing_id,
         "comment_content": comment_content,
-        "user_obj": None,
         "listing_obj": get_listing_by_id(listing_id),
         "user_obj": get_user_by_id(user_id),
         'error_msg': [],
+        'created' : None,
     }
     
     print(comment_data)
+    
+    if comment_data['user_obj'] == None or comment_data['listing_obj'] == None:
+        
+        comment_data['error_msg'].append(technical_err_msg)
+        comment_data["created"] == False
+        
+        return comment_data
+    
+    else:
+        
+        try:
+        
+            comment_to_add = Comment(
+                
+                creator = comment_data['user_obj'],
+                listing = comment_data['listing_obj'],
+                content = comment_data['comment_content'],
+                
+            )
+            
+            comment_to_add.save()
+            
+            comment_data['created'] = True
+            
+        except IntegrityError as e:
+            
+            print(f"Integrity error: {e}")  # log technique
+            comment_data['error_msg'].append("An error occurred while adding your comment. Please try again later")
+            comment_data['created'] = False
+            
+        except DatabaseError as e:
+            
+            print(f"Database error: {e}")  # log technique
+            comment_data['error_msg'].append("A technical problem has occurred. Please try again later.")
+            comment_data['created'] = False
+        
     
     return comment_data
     
