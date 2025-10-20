@@ -7,6 +7,7 @@ from .models import Category
 from .models import Bid
 from .models import User
 from .models import WatchListItem
+from .models import Comment
 
 def save_listing(creator_user_id, l_title, l_description, l_start_bid, l_img_url, l_category_id):
     
@@ -515,8 +516,18 @@ def add_comment(user_id, listing_id, comment_content):
     
     print("init the add comment util function")
     
-    print({
+    comment_data = {
+        
         "user_id": user_id,
         "listing_id": listing_id,
-        "comment_content": comment_content
-    })
+        "comment_content": comment_content,
+        "user_obj": None,
+        "listing_obj": get_listing_by_id(listing_id),
+        "user_obj": get_user_by_id(user_id),
+        'error_msg': [],
+    }
+    
+    print(comment_data)
+    
+    return comment_data
+    
