@@ -26,6 +26,30 @@
 
         {% endfor %}
 
+        <div class="row">
+
+            {% for category in categories %}
+
+                <div class="col-sm-6 col-md-3">
+
+                    <div class="card mb-2">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">{{ category.cat_name }}</h5>
+
+                            <a href="{% url 'auctions:view_category' category.id %}" class="btn btn-primary">Go somewhere</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
     </div>
 
 
