@@ -568,4 +568,8 @@ def add_comment(user_id, listing_id, comment_content):
         
     
     return comment_data
+
+def get_all_categories():
+    
+    print("init get all categories function")
     

@@ -370,6 +370,8 @@ def add_comment(request, listing_id):
 
 def all_categories(request):
     
+    util.get_all_categories()
+    
     return render(request, "auctions/all_categories.html")
 
 def view_category(request, category_id):
