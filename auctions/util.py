@@ -573,3 +573,7 @@ def get_all_categories():
     
     print("init get all categories function")
     
+    category_query = Category.objects.values()
+    
+    return category_query
+    
