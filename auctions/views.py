@@ -367,3 +367,14 @@ def add_comment(request, listing_id):
         messages.error(request, "❌ You must be logged in to add a comment.")
         
     return redirect("auctions:view_listing", listing_id=listing_id)
+
+def all_categories(request):
+    
+    return render(request, "auctions/all_categories.html")
+
+def view_category(request, category_id):
+    
+    print("view a category")
+    print(f"category id: {category_id}")
+    
+    return render(request, "auctions/view_category.html")
