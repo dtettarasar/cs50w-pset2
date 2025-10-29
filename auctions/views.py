@@ -374,7 +374,9 @@ def all_categories(request):
     
     print(cat_list)
     
-    return render(request, "auctions/all_categories.html")
+    return render(request, "auctions/all_categories.html", {
+        "categories": cat_list,
+    })
 
 def view_category(request, category_id):
     
