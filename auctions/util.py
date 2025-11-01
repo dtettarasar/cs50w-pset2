@@ -1,6 +1,7 @@
 import re
 
 from django.db import DatabaseError, IntegrityError
+from django.db.models import Prefetch
 
 from .models import Listing
 from .models import Category
@@ -576,4 +577,39 @@ def get_all_categories():
     category_query = Category.objects.values()
     
     return category_query
+
+def get_listings_by_category(category_id):
+    
+    print("init get category by id function")
+    print(f"category id: {category_id}")
+    
+    listing_data = {
+        
+        "category": None,
+        "listings": None,
+        "error_msg": [],
+        
+    }
+    
+    try:
+        
+        open_listings_qs = get_active_listings()
+        
+        listing_data["category"] = (
+            Category.objects
+            .prefetch_related(
+                Prefetch("listing_set", queryset=open_listings_qs)
+            )
+            .get(pk=category_id)
+        )
+        
+        listing_data["listings"] = listing_data["category"].listing_set.all()
+        
+        return listing_data
+    
+    except Category.DoesNotExist:
+        
+        listing_data["error_msg"].append("Category not found.")
+        
+        return listing_data
     

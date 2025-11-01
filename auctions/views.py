@@ -383,4 +383,7 @@ def view_category(request, category_id):
     print("view a category")
     print(f"category id: {category_id}")
     
+    listings = util.get_listings_by_category(category_id)
+    print(listings)
+    
     return render(request, "auctions/view_category.html")
