@@ -20,12 +20,6 @@
 
     <div class="container mt-4">
 
-        {% for category in categories %}
-
-            {{ category }}
-
-        {% endfor %}
-
         <div class="row">
 
             {% for category in categories %}
@@ -45,7 +39,7 @@
                                 {% else %}
                                     {{ category.open_listings_count }} active listing{{ category.open_listings_count|pluralize }}
                                 {% endif %}
-                                
+
                             </p>
 
                             <a href="{% url 'auctions:view_category' category.id %}" class="btn btn-primary">Go somewhere</a>
