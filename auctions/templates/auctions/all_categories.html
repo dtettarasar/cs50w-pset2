@@ -38,6 +38,16 @@
 
                             <h5 class="card-title">{{ category.cat_name }}</h5>
 
+                            <p class="card-text text-muted">
+
+                                {% if category.open_listings_count == 0 %}
+                                    No listing available
+                                {% else %}
+                                    {{ category.open_listings_count }} active listing{{ category.open_listings_count|pluralize }}
+                                {% endif %}
+                                
+                            </p>
+
                             <a href="{% url 'auctions:view_category' category.id %}" class="btn btn-primary">Go somewhere</a>
 
                         </div>

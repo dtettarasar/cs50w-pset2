@@ -1,7 +1,7 @@
 import re
 
 from django.db import DatabaseError, IntegrityError
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Count, Q
 
 from .models import Listing
 from .models import Category
@@ -574,7 +574,11 @@ def get_all_categories():
     
     print("init get all categories function")
     
-    category_query = Category.objects.values()
+    category_query = (
+        Category.objects
+        .annotate(open_listings_count=Count('listing', filter=Q(listing__status='open')))
+        .order_by('cat_name')
+    )
     
     return category_query
 
