@@ -11,6 +11,8 @@ from .models import WatchListItem
 
 from . import util
 
+from pprint import pprint
+
 def index(request):
     
     print("get access to index page")
@@ -383,7 +385,10 @@ def view_category(request, category_id):
     print("view a category")
     print(f"category id: {category_id}")
     
-    listings = util.get_listings_by_category(category_id)
-    print(listings)
+    listing_data = util.get_listings_by_category(category_id)
+    print("listings in category:")
+    pprint(listing_data)
     
-    return render(request, "auctions/view_category.html")
+    return render(request, "auctions/view_category.html", {
+        "listings": listing_data["listings"],
+    })
