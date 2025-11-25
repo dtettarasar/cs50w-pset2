@@ -382,6 +382,15 @@ def all_categories(request):
 
 def view_category(request, category_id):
     
+    user_watchlist_ids = []
+    
+    if request.user.is_authenticated:
+        
+        user_watchlist_ids = (
+            request.user.created_watch_list_items
+            .values_list("listing__id", flat=True)
+        )
+    
     print("view a category")
     print(f"category id: {category_id}")
     
@@ -392,4 +401,5 @@ def view_category(request, category_id):
     return render(request, "auctions/view_category.html", {
         "listings": listing_data["listings"],
         "category": listing_data["category"],
+        "user_watchlist_ids": user_watchlist_ids,
     })
