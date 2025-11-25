@@ -391,4 +391,5 @@ def view_category(request, category_id):
     
     return render(request, "auctions/view_category.html", {
         "listings": listing_data["listings"],
+        "category": listing_data["category"],
     })
