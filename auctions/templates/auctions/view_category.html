@@ -20,11 +20,77 @@
 
     <div class="container mt-4">
 
-        {% for listing in listings %}
+        <div class="row" data-masonry='{"percentPosition": true }'>
+            {% for listing in listings %}
 
-            {{ listing.title }}
+                <div class="col-sm-4 mt-3">
 
-        {% endfor %}
+                    <div class="card">
+
+                        {% if listing.img_url %}
+
+                            <img class="card-img-top" src="{{ listing.img_url }}">
+
+                        {% else %}
+
+                            <img src="{% static 'auctions/img/no-img_placeholder.png' %}" class="card-img-top" alt="Placeholder image">
+
+                        {% endif %}
+
+                        <div class="card-body">
+
+                            <h3 class="card-title">{{ listing.title }}</h3>
+                            <p class="card-text">{{ listing.description }}</p>
+                            <a href="{% url 'auctions:view_listing' listing.id %}" class="btn btn-primary"><i class="bi bi-info-circle-fill"></i> More details</a>
+
+                            {% if user.is_authenticated and user.id != listing.creator.id %}
+
+                                {% if listing.id in user_watchlist_ids %}
+
+                                    <form class="mt-2" action="{% url 'auctions:remove_from_watchlist' listing.id %}" method="post" >
+
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{% url 'auctions:index' %}">
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-bookmark-x-fill"></i> Remove from watchlist</button>
+
+                                    </form>
+
+                                {% else %}
+
+                                    <form class="mt-2" action="{% url 'auctions:add_to_watchlist' listing.id %}" method="post" >
+
+                                        {% csrf_token %}
+                                        <input type="hidden" name="next" value="{% url 'auctions:index' %}">
+                                        <button type="submit" class="btn btn-success"><i class="bi bi-bookmark-heart-fill"></i> Add to watchlist</button>
+
+                                    </form>
+
+                                {% endif %}
+
+                                
+
+                            {% endif %}
+
+                        </div>
+
+                        <ul class="list-group list-group-flush h5">
+                            <li class="list-group-item"><strong><i class="bi bi-person-circle"></i> Created by:</strong> {{ listing.creator.username }}</li>
+                            <li class="list-group-item"><strong><i class="bi bi-calendar"></i> Created at:</strong> {{ listing.formatted_date }}</li>
+
+                            {% if listing.category.cat_name %}
+                                <li class="list-group-item"><strong><i class="bi bi-tag-fill"></i> Category:</strong> {{ listing.category.cat_name }}</li>
+                            {% endif %}
+
+
+                            <li class="list-group-item"><i class="bi bi-currency-exchange"></i> Price: {{ listing.formatted_bid }}</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+        </div>
         
     </div>
 
