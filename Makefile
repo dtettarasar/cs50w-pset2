@@ -13,6 +13,10 @@ down:
 clean:
 	docker compose down -v
 
+# Mettre à jour / synchroniser le uv.lock
+lock:
+	docker compose exec web uv lock
+
 # Migrations Django
 migrations:
 	docker compose exec web uv run manage.py makemigrations
