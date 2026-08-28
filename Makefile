@@ -29,3 +29,7 @@ reset-db:
 	docker compose down -v
 	docker compose up -d
 	docker compose exec web uv run manage.py migrate
+
+# Create Django admin user
+superuser:
+	docker compose exec web uv run manage.py createsuperuser
