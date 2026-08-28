@@ -59,6 +59,12 @@
 
                         {% endif %}
 
+                    {% elif listing.status == 'cancelled' %}
+
+                        <div class="alert alert-primary" role="alert">
+                            <span class="fs-5"><i class="bi bi-info-circle-fill"></i> auction cancelled</span>
+                        </div>
+
                     {% endif %}
 
                     <!--<p class="fs-4">Status: {{ listing.status }}</p>-->
@@ -283,7 +289,13 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+                        <p>Click the button below to close your auction</p>
                         
+
+                    </div>
+                    <div class="modal-footer">
+
                         <form action="{% url 'auctions:close_auction' listing.id %}" method="post">
 
                             {% csrf_token %}
@@ -292,10 +304,7 @@
 
                         </form>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
