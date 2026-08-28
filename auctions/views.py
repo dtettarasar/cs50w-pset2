@@ -403,3 +403,9 @@ def view_category(request, category_id):
         "category": listing_data["category"],
         "user_watchlist_ids": user_watchlist_ids,
     })
+
+def view_bids(request):
+
+    print("get access to bids page")
+
+    return render(request, "auctions/view_bids.html")
