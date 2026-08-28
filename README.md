@@ -1,44 +1,54 @@
 # cs50w-pset2
 Source code for CS50W's Problem Set 2: Commerce 
 
-About the Problem Set : https://cs50.harvard.edu/web/projects/2/commerce/
+Source code for CS50 Web Programming with Python and JavaScript (Problem Set 2: Commerce).
+
+Course specifications: https://cs50.harvard.edu/web/projects/2/commerce/
 
 ---
 
-## Overview
+## Prerequisites
 
-TODO
+- **Docker** & **Docker Compose**
+- **Make** (optional, but recommended for shortcut commands)
 
 ---
 
-## Use the project with uv and docker
+## Quick start (with Makefile)
 
-This project uses uv, a modern Python package and project manager, and the container manager tool Docker
-
-More info here:
-- https://docs.astral.sh/uv/
-- https://docs.docker.com/get-started/
-
-- Install Docker, then in the terminal once you are in the project folder execute the following commands
+1. **Start the application:**
 
 ~~~
-$ docker compose up
-$ docker compose exec web uv run manage.py makemigrations
-$ docker compose exec web uv run manage.py migrate
+make dev
 ~~~
 
-The project should now be available at http://127.0.0.1:8000/
+(Use make dev-build if you updated the Dockerfile or dependencies)
 
----
 
-## Notes
+2. **Run database migrations:**
 
-- The project has been tested with Python 3.12+.
+~~~
+make migrate
+~~~
 
-- Dependencies are defined in pyproject.toml (handled automatically by uv sync).
+3. **Create the admin user: (optional):**
 
-- No additional configuration is required before running the server.
+~~~
+make superuser
+~~~
 
----
+4. **Open your browser at http://127.0.0.1:8000/**
+
+
+## Tech Stack & Notes
+
+- Python: 3.13
+- Framework: Django 5.2+
+- Package Manager: uv
+- Containerization: Docker & Docker Compose
 
 *Developed as part of Harvard’s CS50W course.*
+https://cs50.harvard.edu/web/
+
+
+
