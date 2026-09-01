@@ -617,7 +617,13 @@ def get_listings_by_category(category_id):
         
         return listing_data
 
-def get_bids_by_user():
+def get_bids_by_user(user_id):
 
     print("init get_bids_by_user function")
+
+    print(f"user_id: {user_id}")
+
+    user_bids = Bid.objects.filter(creator=user_id).select_related('listing')
+    print("user_bids_list:")
+    print(user_bids)
     

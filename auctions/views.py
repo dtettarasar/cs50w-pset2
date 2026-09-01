@@ -408,6 +408,14 @@ def view_bids(request):
 
     print("get access to bids page")
 
-    util.get_bids_by_user()
+    user_bids = None
 
-    return render(request, "auctions/view_bids.html")
+    if request.user.is_authenticated:
+
+        user_id = request.user.id
+        util.get_bids_by_user(user_id)
+
+
+    return render(request, "auctions/view_bids.html", {
+        "user_bids": user_bids,
+    })
