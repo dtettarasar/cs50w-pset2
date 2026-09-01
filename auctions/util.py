@@ -616,4 +616,8 @@ def get_listings_by_category(category_id):
         listing_data["error_msg"].append("Category not found.")
         
         return listing_data
+
+def get_bids_by_user():
+
+    print("init get_bids_by_user function")
     

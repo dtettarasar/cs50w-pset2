@@ -408,4 +408,6 @@ def view_bids(request):
 
     print("get access to bids page")
 
+    util.get_bids_by_user()
+
     return render(request, "auctions/view_bids.html")
