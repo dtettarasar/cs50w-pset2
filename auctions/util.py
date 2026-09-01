@@ -626,4 +626,6 @@ def get_bids_by_user(user_id):
     user_bids = Bid.objects.filter(creator=user_id).select_related('listing')
     print("user_bids_list:")
     print(user_bids)
+
+    return user_bids
     

@@ -413,7 +413,7 @@ def view_bids(request):
     if request.user.is_authenticated:
 
         user_id = request.user.id
-        util.get_bids_by_user(user_id)
+        user_bids = util.get_bids_by_user(user_id)
 
 
     return render(request, "auctions/view_bids.html", {
